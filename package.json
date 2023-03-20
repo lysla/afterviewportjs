@@ -1,22 +1,19 @@
 {
   "name": "@lysla/afterviewportjs",
+  "type": "module",
   "private": false,
-  "version": "0.0.0",
+  "version": "0.0.1",
   "repository": {
     "url": "git+https://github.com/lysla/afterviewportjs.git"
   },
   "scripts": {
     "dev": "vite",
-    "build": "vite build --base=./",
+    "build": "vite build",
     "preview": "vite preview --port=8080"
   },
   "devDependencies": {
     "@types/imagesloaded": "^4.1.2",
-    "autoprefixer": "^10.4.14",
-    "postcss": "^8.4.21",
-    "tailwindcss": "^3.2.7",
-    "vite": "^4.1.0",
-    "vite-plugin-html-purgecss": "^0.1.1"
+    "vite": "^4.1.0"
   },
   "dependencies": {
     "imagesloaded": "^5.0.0"
@@ -26,7 +23,14 @@
     "url": "https://github.com/lysla/afterviewportjs/issues"
   },
   "homepage": "https://github.com/lysla/afterviewportjs#readme",
-  "main": "src/afterviewportjs/index.ts",
+  "main": "./dist/afterviewportjs.umd.cjs",
+  "module": "./dist/afterviewportjs.js",
+  "exports": {
+    ".": {
+      "import": "./dist/afterviewportjs.js",
+      "require": "./dist/afterviewportjs.umd.cjs"
+    }
+  },
   "author": "lysla",
   "license": "ISC"
 }
