@@ -1,5 +1,6 @@
 import { resolve } from "path";
 import { defineConfig } from "vite";
+import dts from "vite-plugin-dts";
 
 export default defineConfig({
   build: {
@@ -9,6 +10,7 @@ export default defineConfig({
       fileName: "afterviewportjs",
     },
   },
+  plugins: [dts()],
   server: {
     port: 8080,
     hot: true,
