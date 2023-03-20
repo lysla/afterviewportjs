@@ -1,0 +1,21 @@
+.av-wrapper {
+  position: relative;
+}
+
+.av-animation-easing {
+  &--linear {
+    transition-duration: 300ms;
+    transition-timing-function: linear;
+  }
+}
+
+.av-animation {
+  @extend .av-animation-easing--linear;
+  &--fade {
+    transition-property: opacity;
+    opacity: 0;
+    &.av-ani-end {
+      opacity: 1;
+    }
+  }
+}
