@@ -19,8 +19,7 @@
     "vite-plugin-html-purgecss": "^0.1.1"
   },
   "dependencies": {
-    "imagesloaded": "^5.0.0",
-    "slick-carousel": "^1.8.1"
+    "imagesloaded": "^5.0.0"
   },
   "description": "*Work in Progress!* Ready to use, lightweight and vanilla, scroll animation library with images load control.",
   "bugs": {
