@@ -53,7 +53,20 @@ export class AfterViewportJs {
     /* assignment of the relative items to the group */
     this.groups.forEach((group) => {
       let elements = document.querySelectorAll(`[data-av="${group.name}"]`);
-      elements.forEach((element) => {
+      let elementsArray = Array.from(elements);
+
+      /* if there needs to be a specific sequence */
+      if (group.sequential) {
+        elementsArray.sort((a, b) => {
+          let aVal = a.getAttribute("data-av-sequential") ?? "";
+          let bVal = b.getAttribute("data-av-sequential") ?? "";
+          if (aVal > bVal) return 1;
+          if (aVal < bVal) return -1;
+          return 0;
+        });
+      }
+
+      elementsArray.forEach((element) => {
         let defaultDuration = "300";
         let latestAddedItemDuration =
           group.items.length > 0
@@ -84,8 +97,6 @@ export class AfterViewportJs {
         });
       });
     });
-
-    console.log(this.groups);
 
     this.startBooting();
 
@@ -170,7 +181,7 @@ export class AfterViewportJs {
         ) {
           /* if the group is sequential */
           if (group.sequential) {
-            let order = 1;
+            let counter = 1;
             /* only if its not already animated i continue with the sequence */
             if (!item.wrapper?.classList.contains("av-ani-end")) {
               /* and only if its in viewport i continue with the sequence */
@@ -180,10 +191,10 @@ export class AfterViewportJs {
                   this.isInViewport(item) == InViewport.Partial)
               ) {
                 item.wrapper?.classList.add(
-                  "av-animation-delay--" + Number(item.delay) * order
+                  "av-animation-delay--" + Number(item.delay) * counter
                 );
                 item.wrapper?.classList.add("av-ani-end");
-                order++;
+                counter++;
               }
             }
             /* if the group isn't sequential */
