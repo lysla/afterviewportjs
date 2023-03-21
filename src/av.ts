@@ -78,7 +78,8 @@ export class AfterViewportJs {
             : "0";
 
         /* the element animation */
-        let eAnimation = element.getAttribute("data-av-animation") ?? "fade";
+        let eAnimation =
+          element.getAttribute("data-av-animation") ?? "av-style-1";
         /* the element animation duration */
         let eDuration =
           element.getAttribute("data-av-animation-duration") ?? defaultDuration;
@@ -98,6 +99,7 @@ export class AfterViewportJs {
       });
     });
 
+    console.log(this.groups);
     this.startBooting();
 
     window.addEventListener("load", () => {
@@ -155,11 +157,11 @@ export class AfterViewportJs {
     this.groups.forEach((group) => {
       group.items.forEach((item) => {
         switch (item.animation) {
-          case "fade":
+          case "av-style-1":
             this.elAddWrapper(item);
             item.wrapper?.setAttribute(
               "class",
-              `av-animation av-animation--fade av-animation-duration av-animation-duration--${item.duration} av-animation-delay`
+              `av-animation av-animation--av-style-1 av-animation-duration av-animation-duration--${item.duration} av-animation-delay av-animation-delay--${item.delay}`
             );
             break;
 

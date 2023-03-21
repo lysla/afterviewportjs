@@ -30,7 +30,7 @@
 
 .av-animation {
   @extend .av-animation-easing--linear;
-  &--fade {
+  &--av-style-1 {
     transition-property: opacity;
     opacity: 0;
     &.av-ani-end {

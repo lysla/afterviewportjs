@@ -4,56 +4,206 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Demo</title>
+  <title>afterviewportjs demo & examples</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="./dist/style.css">
 </head>
 
 <body class="dark:bg-black">
-  <div class="container [ mx-auto px-5 ] text-center">
 
+  <div class="container [ mx-auto px-5 ]">
+    <div class="flex flex-col min-h-screen">
+      <h1 class="dark:text-white [ text-center ] [ py-10 ]">Scroll down to check examples you can obtain with
+        afterviewportjs.</h1>
+      <h2 class="dark:text-white [ text-center ] [ py-10 ]">All examples use the <span
+          class="font-mono">data-av-resets</span> attribute, to let you
+        see multiple times the animation scrolling down and up this page.</h2>
+      <p class="dark:text-white [ mt-auto ]  [ text-center ] [ py-10 ]">Scroll down!</p>
+    </div>
 
-    <div class="h-screen [ py-5 ]">
-      <h1 class="dark:text-white [ font-mono ]">Scroll down to check examples you can obtain with afterviewportjs</h1>
-
-      <div class="py-10">
-        <img src="http://unsplash.it/600/300" alt="" class="mr-auto" data-av data-av-resets />
-      </div>
-      <div class="py-10">
-        <img src="http://unsplash.it/600/400" alt="" class="ml-auto" data-av data-av-resets />
-      </div>
-      <div class="py-10">
-        <img src="http://unsplash.it/600/600" alt="" class="mr-auto" data-av data-av-resets />
-      </div>
-      <div class="py-10">
-        <img src="http://unsplash.it/600/300" alt="" class="mr-auto" data-av="pippo" data-av-sequential="2"
-          data-av-resets data-av-animation-duration="800" data-av-animation-delay="1000" />
-      </div>
-      <div class="py-10">
-        <img src="http://unsplash.it/600/400" alt="" class="ml-auto" data-av="pippo" data-av-sequential="1"
-          data-av-resets data-av-animation-duration="800" />
-      </div>
-      <div class="flex flex-nowrap">
-        <div class="py-10">
-          <img src="http://unsplash.it/600/600" alt="" class="mr-auto" data-av="pippo" data-av-sequential data-av-resets
-            data-av-animation-duration="800" />
+    <div class="min-h-screen">
+      <div class="flex flex-wrap [ mx-n5 ]">
+        <div class="lg:w-1/2 [ p-5 ]">
+          <div class="[ flex mx-n3 ] border border-gray-500 p-4 dark:bg-gray-900 min-h-full">
+            <div class="px-3 w-1/2">
+              <img src="http://unsplash.it/600/400" alt="" data-av data-av-resets />
+            </div>
+            <div class="px-3 w-1/2">
+              <img src="http://unsplash.it/500/400" alt="" data-av data-av-resets />
+            </div>
+          </div>
         </div>
-        <div class="py-10">
-          <img src="http://unsplash.it/600/300" alt="" class="mr-auto" data-av="pippo" data-av-sequential data-av-resets
-            data-av-animation-duration="800" />
-        </div>
-        <div class="py-10">
-          <img src="http://unsplash.it/600/400" alt="" class="ml-auto" data-av="ciccio" data-av-sequential
-            data-av-resets data-av-animation-duration="800" />
-        </div>
-        <div class="py-10">
-          <img src="http://unsplash.it/600/600" alt="" class="mr-auto" data-av="ciccio" data-av-sequential
-            data-av-resets data-av-animation-duration="800" />
+        <div class="lg:w-1/2 [ p-5 ]">
+          <div class="border border-dashed border-gray-500 p-4 dark:bg-gray-900 min-h-full">
+            <p class="font-serif dark:text-white pb-5">
+              Basic animation on scroll.
+            </p>
+            <div class="dark:text-white dark:bg-gray-800 p-4 border-0 overflow-auto font-mono text-left">
+              <p>
+                &lt;... data-av ...&gt;
+              </p>
+            </div>
+          </div>
         </div>
       </div>
     </div>
-
-
+    <div class="min-h-screen">
+      <div class="flex flex-wrap [ mx-n5 ]">
+        <div class="lg:w-1/2 [ p-5 ]">
+          <div class="[ flex mx-n3 ] border border-gray-500 p-4 dark:bg-gray-900 min-h-full">
+            <div class="px-3 w-1/2">
+              <img src="http://unsplash.it/600/400" alt="" data-av data-av-animation-duration="400" data-av-resets />
+            </div>
+            <div class="px-3 w-1/2">
+              <img src="http://unsplash.it/500/400" alt="" data-av data-av-animation-duration="4000" data-av-resets />
+            </div>
+          </div>
+        </div>
+        <div class="lg:w-1/2 [ p-5 ]">
+          <div class="border border-dashed border-gray-500 p-4 dark:bg-gray-900 min-h-full">
+            <p class="font-serif dark:text-white pb-5">
+              Basic animation on scroll with custom animation duration.
+            </p>
+            <div class="dark:text-white dark:bg-gray-800 p-4 border-0 overflow-auto font-mono text-left">
+              <p>
+                &lt;... data-av<br>
+                data-av-animation-duration="<em>n</em>" ...&gt;
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="min-h-screen">
+      <div class="flex flex-wrap [ mx-n5 ]">
+        <div class="lg:w-1/2 [ p-5 ]">
+          <div class="[ flex mx-n3 ] border border-gray-500 p-4 dark:bg-gray-900 min-h-full">
+            <div class="px-3 w-1/2">
+              <img src="http://unsplash.it/600/400" alt="" data-av data-av-animation-delay="400" data-av-resets />
+            </div>
+            <div class="px-3 w-1/2">
+              <img src="http://unsplash.it/500/400" alt="" data-av data-av-animation-delay="2000" data-av-resets />
+            </div>
+          </div>
+        </div>
+        <div class="lg:w-1/2 [ p-5 ]">
+          <div class="border border-dashed border-gray-500 p-4 dark:bg-gray-900 min-h-full">
+            <p class="font-serif dark:text-white pb-5">
+              Basic animation on scroll with custom animation delay.
+            </p>
+            <div class="dark:text-white dark:bg-gray-800 p-4 border-0 overflow-auto font-mono text-left">
+              <p>
+                &lt;... data-av<br>
+                data-av-animation-delay="<em>n</em>" ...&gt;
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="min-h-screen">
+      <div class="flex flex-wrap [ mx-n5 ]">
+        <div class="lg:w-1/2 [ p-5 ]">
+          <div class="[ flex mx-n3 ] border border-gray-500 p-4 dark:bg-gray-900 min-h-full">
+            <div class="px-3 w-1/4">
+              <img src="http://unsplash.it/600/400" alt="" data-av="av-ex-1" data-av-resets data-av-sequential />
+            </div>
+            <div class="px-3 w-1/4">
+              <img src="http://unsplash.it/500/400" alt="" data-av="av-ex-1" data-av-resets data-av-sequential />
+            </div>
+            <div class="px-3 w-1/4">
+              <img src="http://unsplash.it/300/400" alt="" data-av="av-ex-1" data-av-resets data-av-sequential />
+            </div>
+            <div class="px-3 w-1/4">
+              <img src="http://unsplash.it/600/300" alt="" data-av="av-ex-1" data-av-resets data-av-sequential />
+            </div>
+          </div>
+        </div>
+        <div class="lg:w-1/2 [ p-5 ]">
+          <div class="border border-dashed border-gray-500 p-4 dark:bg-gray-900 min-h-full">
+            <p class="font-serif dark:text-white pb-5">
+              Basic sequential within a group.
+            </p>
+            <div class="dark:text-white dark:bg-gray-800 p-4 border-0 overflow-auto font-mono text-left">
+              <p>
+                &lt;... data-av<br>
+                data-av-sequential ...&gt;
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="min-h-screen">
+      <div class="flex flex-wrap [ mx-n5 ]">
+        <div class="lg:w-1/2 [ p-5 ]">
+          <div class="[ flex mx-n3 ] border border-gray-500 p-4 dark:bg-gray-900 min-h-full">
+            <div class="px-3 w-1/4">
+              <img src="http://unsplash.it/600/400" alt="" data-av="av-ex-2" data-av-resets data-av-sequential="1" />
+            </div>
+            <div class="px-3 w-1/4">
+              <img src="http://unsplash.it/500/400" alt="" data-av="av-ex-2" data-av-resets data-av-sequential="4" />
+            </div>
+            <div class="px-3 w-1/4">
+              <img src="http://unsplash.it/300/400" alt="" data-av="av-ex-2" data-av-resets data-av-sequential="2" />
+            </div>
+            <div class="px-3 w-1/4">
+              <img src="http://unsplash.it/600/300" alt="" data-av="av-ex-2" data-av-resets data-av-sequential="3" />
+            </div>
+          </div>
+        </div>
+        <div class="lg:w-1/2 [ p-5 ]">
+          <div class="border border-dashed border-gray-500 p-4 dark:bg-gray-900 min-h-full">
+            <p class="font-serif dark:text-white pb-5">
+              Sequential within a group using a different order sequence.
+            </p>
+            <div class="dark:text-white dark:bg-gray-800 p-4 border-0 overflow-auto font-mono text-left">
+              <p>
+                &lt;... data-av<br>
+                data-av-sequential="<em>n</em>"...&gt;
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="min-h-screen">
+      <div class="flex flex-wrap [ mx-n5 ]">
+        <div class="lg:w-1/2 [ p-5 ]">
+          <div class="[ flex flex-wrap mx-n3 ] border border-gray-500 p-4 dark:bg-gray-900 min-h-full">
+            <div class="p-3 w-1/2">
+              <img src="http://unsplash.it/600/400" alt="" data-av="av-ex-3" data-av-resets
+                data-av-only-when-totally-in />
+            </div>
+            <div class="p-3 w-1/2">
+              <img src="http://unsplash.it/500/400" alt="" data-av="av-ex-3" data-av-resets
+                data-av-only-when-totally-in />
+            </div>
+            <div class="p-3 w-1/2">
+              <img src="http://unsplash.it/300/400" alt="" data-av="av-ex-3" data-av-resets
+                data-av-only-when-totally-in />
+            </div>
+            <div class="p-3 w-1/2">
+              <img src="http://unsplash.it/600/300" alt="" data-av="av-ex-3" data-av-resets
+                data-av-only-when-totally-in />
+            </div>
+          </div>
+        </div>
+        <div class="lg:w-1/2 [ p-5 ]">
+          <div class="border border-dashed border-gray-500 p-4 dark:bg-gray-900 min-h-full">
+            <p class="font-serif dark:text-white pb-5">
+              Basic animation but triggered only when the elements are fully in the viewport.
+            </p>
+            <div class="dark:text-white dark:bg-gray-800 p-4 border-0 overflow-auto font-mono text-left">
+              <p>
+                &lt;... data-av<br>
+                data-av-only-when-totally-in...&gt;
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 
   <script type="module" src="./main.js"></script>
