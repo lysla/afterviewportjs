@@ -2,9 +2,28 @@
   position: relative;
 }
 
+.av-animation-duration {
+  transition-duration: 300ms;
+  $i: 0;
+  @while $i <= 5000 {
+    $i: $i + 100;
+    &--#{$i} {
+      transition-duration: #{$i}ms;
+    }
+  }
+}
+.av-animation-delay {
+  transition-delay: 0;
+  $i: 0;
+  @while $i <= 5000 {
+    $i: $i + 100;
+    &--#{$i} {
+      transition-delay: #{$i}ms;
+    }
+  }
+}
 .av-animation-easing {
   &--linear {
-    transition-duration: 300ms;
     transition-timing-function: linear;
   }
 }

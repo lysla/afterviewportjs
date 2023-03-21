@@ -1,8 +1,11 @@
+import { AfterViewportJsItem } from "./av-item";
+
 export type AfterViewportJsGroup = AfterViewportJsGroupInterface;
 
 interface AfterViewportJsGroupInterface {
   name: string;
-  sequential: boolean;
+  items: AfterViewportJsItem[];
+  sequential: string | boolean;
   resets: boolean;
   onlyWhenTotallyIn: boolean;
 }
