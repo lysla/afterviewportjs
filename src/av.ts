@@ -17,17 +17,31 @@ export class AfterViewportJs {
   ) {
     let elements = document.querySelectorAll(selector);
 
-    elements.forEach((item) => {
+    elements.forEach((element) => {
+      /* the group name if present */
+      let gName = element.getAttribute("data-av") ?? "";
+
+      /* the sequence of the group */
+      let gSequential = element.getAttribute("data-av-sequential") ?? false;
+      gSequential = gSequential !== false ? true : false;
+
+      /* if this group resets */
+      let gResets = element.hasAttribute("data-av-resets") ? true : false;
+
+      /* if this group animate only when totally in */
+      let gOnlyWhenTotallyIn = element.hasAttribute(
+        "data-av-only-when-totally-in"
+      )
+        ? true
+        : false;
+
       let group: AfterViewportJsGroup = {
-        name: item.getAttribute("data-av") ?? "",
-        sequential: item.hasAttribute("data-av-sequential")
-          ? item.getAttribute("data-av-sequential") ?? true
-          : null,
-        resets: item.hasAttribute("data-av-resets") ? true : false,
-        onlyWhenTotallyIn: item.hasAttribute("data-av-only-when-totally-in")
-          ? true
-          : false,
+        name: gName,
+        sequential: gSequential,
+        resets: gResets,
+        onlyWhenTotallyIn: gOnlyWhenTotallyIn,
       };
+
       if (
         group.name &&
         !this.groups.find((g: AfterViewportJsGroup) => g.name == group.name)
@@ -35,14 +49,34 @@ export class AfterViewportJs {
         this.groups.push(group);
       }
 
+      let defaultDuration = "300";
+      let latestAddedItemDuration =
+        this.items.length > 0
+          ? this.items[this.items.length - 1].duration
+          : "0";
+
+      /* the element animation */
+      let eAnimation = element.getAttribute("data-av-animation") ?? "fade";
+      /* the element animation duration */
+      let eDuration =
+        element.getAttribute("data-av-animation-duration") ?? defaultDuration;
+      /* the element animation delay */
+      let eDelay = element.getAttribute("data-av-animation-delay") ?? false;
+      eDelay = eDelay ? eDelay : latestAddedItemDuration;
+
       this.items.push({
-        element: item,
+        element: element,
         group: group,
-        animation: item.getAttribute("data-av-animation") ?? "fade",
+        animation: eAnimation,
+        duration: eDuration,
+        delay: eDelay,
       });
+
+      console.log(this.items);
     });
 
     this.startBooting();
+
     window.addEventListener("load", () => {
       imagesLoaded("body", { background: true }, () => {
         this.init();
@@ -108,7 +142,7 @@ export class AfterViewportJs {
           this.elAddWrapper(item);
           item.wrapper?.setAttribute(
             "class",
-            "av-animation av-animation--fade av-animation-duration av-animation-duration--600 av-animation-delay"
+            `av-animation av-animation--fade av-animation-duration av-animation-duration--${item.duration} av-animation-delay`
           );
           break;
 
@@ -120,16 +154,15 @@ export class AfterViewportJs {
 
   private listenersCallback(): void {
     this.items.forEach((item: AfterViewportJsItem) => {
+      /* if the item is to be animated (in viewport, totally o partially) */
       if (
         this.isInViewport(item) == InViewport.In ||
         (!item.group.onlyWhenTotallyIn &&
           this.isInViewport(item) == InViewport.Partial)
       ) {
+        /* if the group is sequential */
         if (item.group.sequential) {
-          console.log("is seq");
           let groupItems = this.getItemsInGroup(item.group);
-          // Sequential with undefined order
-          let delay = 600;
           let order = 0;
           groupItems.forEach((it) => {
             if (!it.wrapper?.classList.contains("av-ani-end")) {
@@ -139,19 +172,22 @@ export class AfterViewportJs {
                   this.isInViewport(it) == InViewport.Partial)
               ) {
                 it.wrapper?.classList.add(
-                  "av-animation-delay--" + delay * order
+                  "av-animation-delay--" + Number(it.delay) * order
                 );
                 it.wrapper?.classList.add("av-ani-end");
                 order++;
               }
             }
           });
+          /* if the group isn't sequential */
         } else {
           if (!item.wrapper?.classList.contains("av-ani-end")) {
             item.wrapper?.classList.add("av-ani-end");
           }
         }
+        /* if the item is going out of the viewport i manage resets */
       } else {
+        /* only if the group has the reset active */
         if (item.group.resets) {
           item.wrapper?.classList.remove("av-ani-end");
         }
