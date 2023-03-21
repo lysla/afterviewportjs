@@ -20,9 +20,13 @@ export class AfterViewportJs {
     elements.forEach((item) => {
       let group: AfterViewportJsGroup = {
         name: item.getAttribute("data-av") ?? "",
-        sequential: false,
-        resets: false,
-        onlyWhenTotallyIn: false,
+        sequential: item.hasAttribute("data-av-sequential")
+          ? item.getAttribute("data-av-sequential") ?? true
+          : null,
+        resets: item.hasAttribute("data-av-resets") ? true : false,
+        onlyWhenTotallyIn: item.hasAttribute("data-av-only-when-totally-in")
+          ? true
+          : false,
       };
       if (
         group.name &&
@@ -41,7 +45,6 @@ export class AfterViewportJs {
     this.startBooting();
     window.addEventListener("load", () => {
       imagesLoaded("body", { background: true }, () => {
-        console.log("loaded!");
         this.init();
         this.addListeners();
 
@@ -62,7 +65,7 @@ export class AfterViewportJs {
 
   private getItemsInGroup(group: AfterViewportJsGroup): AfterViewportJsItem[] {
     let items = this.items.filter((i: AfterViewportJsItem) => {
-      return i.group === group;
+      return i.group.name == group.name;
     });
     return items;
   }
@@ -77,7 +80,6 @@ export class AfterViewportJs {
       left: 0,
     };
 
-    let inV = false;
     // If the inner if inside the outer, just partially
     if (
       inner.bottom >= outer.top &&
@@ -106,7 +108,7 @@ export class AfterViewportJs {
           this.elAddWrapper(item);
           item.wrapper?.setAttribute(
             "class",
-            "av-animation av-animation--fade"
+            "av-animation av-animation--fade av-animation-duration av-animation-duration--600 av-animation-delay"
           );
           break;
 
@@ -123,7 +125,32 @@ export class AfterViewportJs {
         (!item.group.onlyWhenTotallyIn &&
           this.isInViewport(item) == InViewport.Partial)
       ) {
-        item.wrapper?.classList.add("av-ani-end");
+        if (item.group.sequential) {
+          console.log("is seq");
+          let groupItems = this.getItemsInGroup(item.group);
+          // Sequential with undefined order
+          let delay = 600;
+          let order = 0;
+          groupItems.forEach((it) => {
+            if (!it.wrapper?.classList.contains("av-ani-end")) {
+              if (
+                this.isInViewport(it) == InViewport.In ||
+                (!it.group.onlyWhenTotallyIn &&
+                  this.isInViewport(it) == InViewport.Partial)
+              ) {
+                it.wrapper?.classList.add(
+                  "av-animation-delay--" + delay * order
+                );
+                it.wrapper?.classList.add("av-ani-end");
+                order++;
+              }
+            }
+          });
+        } else {
+          if (!item.wrapper?.classList.contains("av-ani-end")) {
+            item.wrapper?.classList.add("av-ani-end");
+          }
+        }
       } else {
         if (item.group.resets) {
           item.wrapper?.classList.remove("av-ani-end");

@@ -2,7 +2,7 @@ export type AfterViewportJsGroup = AfterViewportJsGroupInterface;
 
 interface AfterViewportJsGroupInterface {
   name: string;
-  sequential: boolean;
+  sequential: any;
   resets: boolean;
   onlyWhenTotallyIn: boolean;
 }
