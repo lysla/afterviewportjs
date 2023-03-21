@@ -8,5 +8,5 @@ interface AfterViewportJsItemInterface {
   group: AfterViewportJsGroup;
   animation: "fade" | "slide" | string;
   duration: string;
-  delay: string;
+  delay: string | number;
 }
