@@ -78,7 +78,8 @@ export class AfterViewportJs {
             : "0";
 
         /* the element animation */
-        let eAnimation = element.getAttribute("data-av-animation") ?? "fade";
+        let eAnimation =
+          element.getAttribute("data-av-animation") ?? "av-style-01";
         /* the element animation duration */
         let eDuration =
           element.getAttribute("data-av-animation-duration") ?? defaultDuration;
@@ -86,7 +87,9 @@ export class AfterViewportJs {
         let eDelay = element.getAttribute("data-av-animation-delay") ?? 0;
         eDelay = eDelay
           ? eDelay
-          : Number(latestAddedItemDuration) + Number(latestAddedItemDelay);
+          : group.sequential
+          ? Number(latestAddedItemDuration) + Number(latestAddedItemDelay)
+          : eDelay;
 
         group.items.push({
           element: element,
@@ -98,6 +101,7 @@ export class AfterViewportJs {
       });
     });
 
+    console.log(this.groups);
     this.startBooting();
 
     window.addEventListener("load", () => {
@@ -155,11 +159,21 @@ export class AfterViewportJs {
     this.groups.forEach((group) => {
       group.items.forEach((item) => {
         switch (item.animation) {
-          case "fade":
+          case "av-style-01":
+          case "av-style-02":
+          case "av-style-03":
+          case "av-style-04":
+          case "av-style-05":
+          case "av-style-06":
+          case "av-style-07":
+          case "av-style-08":
+          case "av-style-09":
+          case "av-style-10":
+          case "av-style-11":
             this.elAddWrapper(item);
             item.wrapper?.setAttribute(
               "class",
-              `av-animation av-animation--fade av-animation-duration av-animation-duration--${item.duration} av-animation-delay`
+              `av-animation av-animation--${item.animation} av-animation-duration av-animation-duration--${item.duration} av-animation-delay av-animation-delay--${item.delay}`
             );
             break;
 
@@ -238,7 +252,6 @@ export class AfterViewportJs {
 
   private elAddWrapper(item: AfterViewportJsItem): void {
     const wrapper = document.createElement("div");
-    wrapper.setAttribute("class", "av-wrapper");
     item.element.insertAdjacentElement("afterend", wrapper);
     wrapper.appendChild(item.element);
     item.wrapper = wrapper;

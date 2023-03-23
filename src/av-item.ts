@@ -6,7 +6,7 @@ interface AfterViewportJsItemInterface {
   element: Element;
   wrapper?: Element;
   group: AfterViewportJsGroup;
-  animation: "fade" | "slide" | string;
+  animation: "av-style-1" | "av-style-2" | string;
   duration: string;
   delay: string | number;
 }
