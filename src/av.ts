@@ -79,7 +79,7 @@ export class AfterViewportJs {
 
         /* the element animation */
         let eAnimation =
-          element.getAttribute("data-av-animation") ?? "av-style-1";
+          element.getAttribute("data-av-animation") ?? "av-style-01";
         /* the element animation duration */
         let eDuration =
           element.getAttribute("data-av-animation-duration") ?? defaultDuration;
@@ -159,11 +159,17 @@ export class AfterViewportJs {
     this.groups.forEach((group) => {
       group.items.forEach((item) => {
         switch (item.animation) {
-          case "av-style-1":
-          case "av-style-2":
-          case "av-style-3":
-          case "av-style-4":
-          case "av-style-5":
+          case "av-style-01":
+          case "av-style-02":
+          case "av-style-03":
+          case "av-style-04":
+          case "av-style-05":
+          case "av-style-06":
+          case "av-style-07":
+          case "av-style-08":
+          case "av-style-09":
+          case "av-style-10":
+          case "av-style-11":
             this.elAddWrapper(item);
             item.wrapper?.setAttribute(
               "class",
@@ -246,7 +252,6 @@ export class AfterViewportJs {
 
   private elAddWrapper(item: AfterViewportJsItem): void {
     const wrapper = document.createElement("div");
-    wrapper.setAttribute("class", "av-wrapper");
     item.element.insertAdjacentElement("afterend", wrapper);
     wrapper.appendChild(item.element);
     item.wrapper = wrapper;
