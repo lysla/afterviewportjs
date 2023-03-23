@@ -87,7 +87,9 @@ export class AfterViewportJs {
         let eDelay = element.getAttribute("data-av-animation-delay") ?? 0;
         eDelay = eDelay
           ? eDelay
-          : Number(latestAddedItemDuration) + Number(latestAddedItemDelay);
+          : group.sequential
+          ? Number(latestAddedItemDuration) + Number(latestAddedItemDelay)
+          : eDelay;
 
         group.items.push({
           element: element,
@@ -158,10 +160,14 @@ export class AfterViewportJs {
       group.items.forEach((item) => {
         switch (item.animation) {
           case "av-style-1":
+          case "av-style-2":
+          case "av-style-3":
+          case "av-style-4":
+          case "av-style-5":
             this.elAddWrapper(item);
             item.wrapper?.setAttribute(
               "class",
-              `av-animation av-animation--av-style-1 av-animation-duration av-animation-duration--${item.duration} av-animation-delay av-animation-delay--${item.delay}`
+              `av-animation av-animation--${item.animation} av-animation-duration av-animation-duration--${item.duration} av-animation-delay av-animation-delay--${item.delay}`
             );
             break;
 

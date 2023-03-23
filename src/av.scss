@@ -39,4 +39,40 @@
       opacity: 1;
     }
   }
+  &--av-style-2 {
+    transition-property: all;
+    opacity: 0;
+    transform: translate(-20px, 0);
+    &.av-ani-end {
+      opacity: 1;
+      transform: translate(0, 0);
+    }
+  }
+  &--av-style-3 {
+    transition-property: all;
+    opacity: 0;
+    transform: translate(20px, 0);
+    &.av-ani-end {
+      opacity: 1;
+      transform: translate(0, 0);
+    }
+  }
+  &--av-style-4 {
+    transition-property: all;
+    opacity: 0;
+    transform: translate(0, -20px);
+    &.av-ani-end {
+      opacity: 1;
+      transform: translate(0, 0);
+    }
+  }
+  &--av-style-5 {
+    transition-property: all;
+    opacity: 0;
+    transform: translate(0, 20px);
+    &.av-ani-end {
+      opacity: 1;
+      transform: translate(0, 0);
+    }
+  }
 }
