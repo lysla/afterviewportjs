@@ -1,11 +1,11 @@
-var m = /* @__PURE__ */ ((d) => (d[d.Partial = 0] = "Partial", d[d.In = 1] = "In", d[d.Out = 2] = "Out", d))(m || {}), b = typeof globalThis < "u" ? globalThis : typeof window < "u" ? window : typeof global < "u" ? global : typeof self < "u" ? self : {}, v = {}, w = {
+var m = /* @__PURE__ */ ((d) => (d[d.Partial = 0] = "Partial", d[d.In = 1] = "In", d[d.Out = 2] = "Out", d))(m || {}), b = typeof globalThis < "u" ? globalThis : typeof window < "u" ? window : typeof global < "u" ? global : typeof self < "u" ? self : {}, v = {}, L = {
   get exports() {
     return v;
   },
   set exports(d) {
     v = d;
   }
-}, y = {}, L = {
+}, y = {}, A = {
   get exports() {
     return y;
   },
@@ -13,7 +13,7 @@ var m = /* @__PURE__ */ ((d) => (d[d.Partial = 0] = "Partial", d[d.In = 1] = "In
     y = d;
   }
 }, E;
-function A() {
+function k() {
   return E || (E = 1, function(d) {
     (function(n, e) {
       d.exports ? d.exports = e() : n.EvEmitter = e();
@@ -51,7 +51,7 @@ function A() {
         return delete this._events, delete this._onceEvents, this;
       }, n;
     });
-  }(L)), y;
+  }(A)), y;
 }
 /*!
  * imagesLoaded v5.0.0
@@ -60,7 +60,7 @@ function A() {
  */
 (function(d) {
   (function(n, e) {
-    d.exports ? d.exports = e(n, A()) : n.imagesLoaded = e(n, n.EvEmitter);
+    d.exports ? d.exports = e(n, k()) : n.imagesLoaded = e(n, n.EvEmitter);
   })(
     typeof window < "u" ? window : b,
     function(e, r) {
@@ -92,8 +92,8 @@ function A() {
           this.addImage(c);
         if (typeof this.options.background == "string") {
           let c = t.querySelectorAll(this.options.background);
-          for (let I of c)
-            this.addElementBackgroundImages(I);
+          for (let w of c)
+            this.addElementBackgroundImages(w);
         }
       };
       const f = /url\((['"])?(.*?)\1\)/gi;
@@ -175,8 +175,8 @@ function A() {
       }, o.makeJQueryPlugin(), o;
     }
   );
-})(w);
-class k {
+})(L);
+class I {
   constructor(n = "[data-av]", e) {
     return this.groups = [], document.querySelectorAll(n).forEach((s) => {
       let a = s.getAttribute("data-av") ?? "", l = s.getAttribute("data-av-sequential") ?? !1;
@@ -296,8 +296,9 @@ class k {
   }
 }
 function q(d, n) {
-  return new k(d, n);
+  return new I(d, n);
 }
+new I();
 export {
   q as default
 };
