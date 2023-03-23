@@ -2,13 +2,13 @@
   "name": "@lysla/afterviewportjs",
   "type": "module",
   "private": false,
-  "version": "0.0.5",
+  "version": "0.0.6",
   "repository": {
     "url": "git+https://github.com/lysla/afterviewportjs.git"
   },
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
+    "build": "vite build --watch",
     "preview": "vite preview --port=8080"
   },
   "devDependencies": {

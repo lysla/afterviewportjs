@@ -9,4 +9,7 @@ function afterViewportJs(
 ): AfterViewportJs {
   return new AfterViewportJs(selector, options);
 }
+
+new AfterViewportJs();
+
 export default afterViewportJs;
