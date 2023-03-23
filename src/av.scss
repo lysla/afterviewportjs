@@ -18,7 +18,9 @@
   @while $i <= 5000 {
     $i: $i + 100;
     &--#{$i} {
-      transition-delay: #{$i}ms;
+      &.av-ani-end {
+        transition-delay: #{$i}ms;
+      }
     }
   }
 }
