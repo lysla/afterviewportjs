@@ -2,7 +2,7 @@
 
 _Work in Progress!_ Ready to use, lightweight and vanilla, scroll animation library with images load control.
 
-For examples and demo [look here](https://lysla.dev)
+For examples and demo [look here](https://lysla.github.io/afterviewportjs/)
 
 ## Installation
 
