@@ -1,8 +1,10 @@
 # afterviewportjs
 
-_Work in Progress!_ Ready to use, lightweight and vanilla, less then _< 40kb_ library scroll animation library with images load control. No framework dependencies.
+_Work in progress!_ Lightweight and vanilla, ready to use animation scroll library with images load control** and animejs** integration for svg.
 
-For examples and demo [look here](https://lysla.github.io/afterviewportjs/)
+\*\*All right reserved &copy; [imagesloaded](https://imagesloaded.desandro.com) [animejs](https://animejs.com)
+
+[➡ Demo ⬅](https://lysla.github.io/afterviewportjs/)
 
 ## Installation
 
