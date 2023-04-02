@@ -256,7 +256,7 @@ export class AfterViewportJs {
                     anime({
                       targets: item.element.querySelector("path"),
                       strokeDashoffset: [anime.setDashoffset, 0],
-                      easing: "easeInOutSine",
+                      easing: "linear",
                       duration: Number.parseInt(item.duration),
                       delay: Number(item.delay) * counter,
                       direction: "normal",
@@ -279,7 +279,7 @@ export class AfterViewportJs {
                   anime({
                     targets: item.element.querySelector("path"),
                     strokeDashoffset: [anime.setDashoffset, 0],
-                    easing: "easeInOutSine",
+                    easing: "linear",
                     duration: Number.parseInt(item.duration),
                     delay: Number.parseInt(item.delay),
                     direction: "normal",
@@ -302,7 +302,7 @@ export class AfterViewportJs {
                 anime({
                   targets: item.element.querySelector("path"),
                   strokeDashoffset: [0, anime.setDashoffset],
-                  easing: "easeInOutSine",
+                  easing: "linear",
                   duration: Number.parseInt(item.duration),
                   delay: Number.parseInt(item.delay),
                   direction: "normal",
