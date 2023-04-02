@@ -5,27 +5,58 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>afterviewportjs demo & examples</title>
+  <link rel="shortcut icon" href="./favicon.png" type="image/x-icon" sizes="any">
   <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://use.typekit.net/rta5gwl.css">
+  <script src="https://kit.fontawesome.com/b3765e2f35.js" crossorigin="anonymous"></script>
   <link rel="stylesheet" href="./dist/style.css">
 </head>
 
 <body class="dark:bg-black">
-
-  <div class="container [ mx-auto px-5 ]">
-    <div class="flex flex-col min-h-screen">
-      <h1 class="dark:text-white [ text-center ] [ py-10 ]">Scroll down to check examples you can obtain with
-        afterviewportjs.</h1>
-      <h2 class="dark:text-white [ text-center ] [ py-10 ]">All examples use the <span
-          class="font-mono">data-av-resets</span> attribute, to let you
-        see multiple times the animation scrolling down and up this page.</h2>
-      <p class="dark:text-white [ mt-auto ]  [ text-center ] [ py-10 ]">Scroll down!</p>
+  <div class="container overflow-hidden [ mx-auto px-5 ]">
+    <div class="flex flex-col min-h-screen relative" data-av data-av-resets>
+      <div
+        class="absolute lg:p-10 p-5 left-[50%] top-[50%] -translate-x-[50%] -translate-y-[80%] scale-[2] lg:scale-100 w-full">
+        <svg xmlns="http://www.w3.org/2000/svg" class="w-full h-auto p-5" viewBox="0 0 383.49 141.03" data-av
+          data-av-resets data-av-animation="av-style-12" data-av-animation-duration="3000">
+          <path
+            d="m127.99,28.3c0-2.03-1.58-4.52-4.75-7.46-3.17-2.93-7.58-5.54-13.22-7.8-5.65-2.26-12.21-3.39-19.67-3.39-10.4,0-20.97,2.49-31.71,7.46-10.74,4.97-20.52,11.7-29.33,20.18-8.82,8.48-15.83,18.03-21.02,28.65-2.26,4.97-4.12,10.12-5.59,15.43-1.47,5.32-2.2,10.68-2.2,16.11,0,11.76,3,20.06,8.99,24.92,5.99,4.86,12.94,7.29,20.85,7.29,9.27,0,17.69-2.15,25.26-6.44s14.3-9.61,20.18-15.94,11.07-12.55,15.6-18.65c3.84-5.2,7.51-9.55,11.02-13.06,3.5-3.5,6.72-5.26,9.66-5.26,3.61,0,6.61,2.04,8.99,6.1,2.37,4.07,4.69,9.05,6.95,14.92,2.48,5.88,5.31,11.76,8.48,17.63,3.16,5.88,7.29,10.74,12.38,14.58,5.09,3.84,11.47,5.77,19.16,5.77,11.3,0,22.15-4.69,32.55-14.07,10.4-9.38,20.8-24.69,31.2-45.95v-.02c5.19-10.84,9.83-18.35,13.89-22.53,4.07-4.18,7.68-6.27,10.85-6.27,5.2,0,9.66,2.32,13.39,6.95,3.73,4.64,7.17,10.57,10.34,17.8,3.16,7.24,6.21,14.92,9.15,23.06,3.16,8.59,6.5,16.9,10,24.92,3.5,8.03,7.46,14.58,11.87,19.67s9.55,7.63,15.43,7.63c7.23,0,13.79-2.66,19.67-7.97,5.87-5.31,11.07-12.21,15.6-20.68,4.52-8.48,8.36-17.57,11.53-27.3,3.16-9.72,5.54-19.1,7.12-28.15,1.58-9.04,2.37-16.61,2.37-22.72,0-8.59-1.3-16.28-3.9-23.06v.02c-2.59-6.78-6.49-10.17-11.69-10.17-2.94,0-5.65,1.02-8.14,3.05-2.49,2.03-3.73,4.18-3.73,6.44,0,1.58.34,2.94,1.02,4.07.68,1.13,1.47,2.49,2.37,4.07,1.81,2.71,3.61,6.33,5.42,10.85,1.81,4.53,2.71,11.08,2.71,19.67,0,7.01-.74,14.98-2.2,23.91-1.47,8.93-3.62,17.46-6.44,25.6-2.83,8.14-6.27,14.87-10.34,20.18s-8.7,7.97-13.9,7.97c-5.88,0-10.8-4.24-14.75-12.72-3.96-8.48-7.86-18.36-11.7-29.67-3.17-9.27-6.67-18.42-10.51-27.47-3.85-9.04-8.37-16.5-13.57-22.38-5.2-5.88-11.53-8.82-18.99-8.82-7.92,0-14.53,3.11-19.84,9.32-5.31,6.22-11.59,16.67-18.82,31.37v.02c-15.37,31.87-31.87,47.8-49.5,47.8-6.1,0-11.19-1.58-15.26-4.75-4.07-3.16-7.46-7.17-10.17-12.04-2.71-4.86-5.2-9.89-7.46-15.09-2.94-6.78-6.1-12.89-9.49-18.31s-8.37-8.14-14.92-8.14c-4.97,0-10,2.43-15.09,7.29s-10.23,10.57-15.43,17.12c-4.53,5.65-9.38,11.31-14.58,16.95-5.2,5.65-10.85,10.29-16.95,13.9-6.1,3.62-12.77,5.43-20.01,5.43-6.56,0-11.7-2.2-15.43-6.61s-5.59-10.68-5.59-18.82c0-9.49,1.92-18.42,5.76-26.79,3.84-8.36,8.87-15.65,15.09-21.87s13.22-11.13,21.02-14.75c7.8-3.61,15.54-5.42,23.23-5.42,7.23,0,12.89,1.3,16.95,3.9,4.07,2.6,7.46,5.37,10.17,8.31,3.16,3.62,5.99,5.42,8.48,5.42s4.97-1.24,7.46-3.73c2.48-2.48,3.73-4.97,3.73-7.46"
+            class="stroke-neutral-100 dark:stroke-neutral-900 lg:stroke-1 stroke-2 fill-transparent" />
+        </svg>
+      </div>
+      <div class="z-10 relative flex-grow flex flex-col">
+        <h1 class="dark:text-white text-3xl [ text-center ] [ py-10 ] font-logo"><span class="block text-6xl">av</span>
+          afterviewport.js
+        </h1>
+        <h2 class="dark:text-white [ text-center ] [ py-10 ] tracking-wide">Scroll down to check examples you can obtain
+          with
+          afterviewportjs.</h2>
+        <h3 class="dark:text-white text-xs [ text-center ] [ py-10 ] tracking-widest">All examples use the <span
+            class="font-mono">data-av-resets</span> attribute, to let you
+          see multiple times the animation scrolling down and up this page.
+        </h3>
+        <div class="flex justify-center">
+          <div class="px-4">
+            <a class="dark:text-white inline-flex items-center tracking-wider"
+              href="https://github.com/lysla/afterviewportjs" target="_blank">
+              <span class="mr-2"><i class="fa-brands fa-github"></i></span> <span class="text-xs">View on Github</span>
+            </a>
+          </div>
+          <div class="px-4">
+            <a class="dark:text-white inline-flex items-center tracking-wider"
+              href="https://www.npmjs.com/package/@lysla/afterviewportjs" target="_blank">
+              <span class="mr-2"><i class="fa-brands fa-npm"></i></span> <span class="text-xs">View on NPM</span>
+            </a>
+          </div>
+        </div>
+        <p class="dark:text-white text-lg [ mt-auto ] [ text-center ] [ py-10 ] font-logo">Scroll down</p>
+      </div>
     </div>
-
     <!-- #region basic animation on scroll -->
     <div class="pb-10">
       <div class="flex flex-wrap [ mx-n5 ]">
         <div class="lg:w-1/2 [ p-5 ]">
-          <div class="[ flex mx-n3 ] border border-gray-500 p-4 dark:bg-gray-900 min-h-full">
+          <div class="[ flex mx-n3 ] border border-neutral-500 p-4 dark:bg-neutral-950 min-h-full">
             <div class="px-3 w-1/2">
               <img src="http://unsplash.it/600/400" alt="" data-av data-av-resets />
             </div>
@@ -35,11 +66,11 @@
           </div>
         </div>
         <div class="lg:w-1/2 [ p-5 ]">
-          <div class="border border-dashed border-gray-500 p-4 dark:bg-gray-900 min-h-full">
+          <div class="border border-dashed border-neutral-500 p-4 dark:bg-neutral-950 min-h-full">
             <p class="font-serif dark:text-white pb-5">
               Basic animation on scroll.
             </p>
-            <div class="dark:text-white dark:bg-gray-800 p-4 border-0 overflow-auto font-mono text-left">
+            <div class="dark:text-white dark:bg-neutral-800 p-4 border-0 overflow-auto font-mono text-left">
               <p>
                 &lt;... data-av ...&gt;
               </p>
@@ -53,7 +84,7 @@
     <div class="pb-10">
       <div class="flex flex-wrap [ mx-n5 ]">
         <div class="lg:w-1/2 [ p-5 ]">
-          <div class="[ flex mx-n3 ] border border-gray-500 p-4 dark:bg-gray-900 min-h-full">
+          <div class="[ flex mx-n3 ] border border-neutral-500 p-4 dark:bg-neutral-950 min-h-full">
             <div class="px-3 w-1/2">
               <img src="http://unsplash.it/600/400" alt="" data-av data-av-animation-duration="400" data-av-resets />
             </div>
@@ -63,11 +94,11 @@
           </div>
         </div>
         <div class="lg:w-1/2 [ p-5 ]">
-          <div class="border border-dashed border-gray-500 p-4 dark:bg-gray-900 min-h-full">
+          <div class="border border-dashed border-neutral-500 p-4 dark:bg-neutral-950 min-h-full">
             <p class="font-serif dark:text-white pb-5">
               Basic animation on scroll with custom animation duration.
             </p>
-            <div class="dark:text-white dark:bg-gray-800 p-4 border-0 overflow-auto font-mono text-left">
+            <div class="dark:text-white dark:bg-neutral-800 p-4 border-0 overflow-auto font-mono text-left">
               <p>
                 &lt;... data-av<br>
                 data-av-animation-duration="<em>n</em>" ...&gt;
@@ -82,7 +113,7 @@
     <div class="pb-10">
       <div class="flex flex-wrap [ mx-n5 ]">
         <div class="lg:w-1/2 [ p-5 ]">
-          <div class="[ flex mx-n3 ] border border-gray-500 p-4 dark:bg-gray-900 min-h-full">
+          <div class="[ flex mx-n3 ] border border-neutral-500 p-4 dark:bg-neutral-950 min-h-full">
             <div class="px-3 w-1/2">
               <img src="http://unsplash.it/600/400" alt="" data-av data-av-animation-delay="400" data-av-resets />
             </div>
@@ -92,11 +123,11 @@
           </div>
         </div>
         <div class="lg:w-1/2 [ p-5 ]">
-          <div class="border border-dashed border-gray-500 p-4 dark:bg-gray-900 min-h-full">
+          <div class="border border-dashed border-neutral-500 p-4 dark:bg-neutral-950 min-h-full">
             <p class="font-serif dark:text-white pb-5">
               Basic animation on scroll with custom animation delay.
             </p>
-            <div class="dark:text-white dark:bg-gray-800 p-4 border-0 overflow-auto font-mono text-left">
+            <div class="dark:text-white dark:bg-neutral-800 p-4 border-0 overflow-auto font-mono text-left">
               <p>
                 &lt;... data-av<br>
                 data-av-animation-delay="<em>n</em>" ...&gt;
@@ -111,7 +142,7 @@
     <div class="pb-10">
       <div class="flex flex-wrap [ mx-n5 ]">
         <div class="lg:w-1/2 [ p-5 ]">
-          <div class="[ flex mx-n3 ] border border-gray-500 p-4 dark:bg-gray-900 min-h-full">
+          <div class="[ flex mx-n3 ] border border-neutral-500 p-4 dark:bg-neutral-950 min-h-full">
             <div class="px-3 w-1/4">
               <img src="http://unsplash.it/600/400" alt="" data-av="av-ex-1" data-av-resets data-av-sequential />
             </div>
@@ -127,11 +158,11 @@
           </div>
         </div>
         <div class="lg:w-1/2 [ p-5 ]">
-          <div class="border border-dashed border-gray-500 p-4 dark:bg-gray-900 min-h-full">
+          <div class="border border-dashed border-neutral-500 p-4 dark:bg-neutral-950 min-h-full">
             <p class="font-serif dark:text-white pb-5">
               Basic sequential within a group.
             </p>
-            <div class="dark:text-white dark:bg-gray-800 p-4 border-0 overflow-auto font-mono text-left">
+            <div class="dark:text-white dark:bg-neutral-800 p-4 border-0 overflow-auto font-mono text-left">
               <p>
                 &lt;... data-av<br>
                 data-av-sequential ...&gt;
@@ -146,7 +177,7 @@
     <div class="pb-10">
       <div class="flex flex-wrap [ mx-n5 ]">
         <div class="lg:w-1/2 [ p-5 ]">
-          <div class="[ flex mx-n3 ] border border-gray-500 p-4 dark:bg-gray-900 min-h-full">
+          <div class="[ flex mx-n3 ] border border-neutral-500 p-4 dark:bg-neutral-950 min-h-full">
             <div class="px-3 w-1/4">
               <img src="http://unsplash.it/600/400" alt="" data-av="av-ex-2" data-av-resets data-av-sequential="1" />
             </div>
@@ -162,11 +193,11 @@
           </div>
         </div>
         <div class="lg:w-1/2 [ p-5 ]">
-          <div class="border border-dashed border-gray-500 p-4 dark:bg-gray-900 min-h-full">
+          <div class="border border-dashed border-neutral-500 p-4 dark:bg-neutral-950 min-h-full">
             <p class="font-serif dark:text-white pb-5">
               Sequential within a group using a different order sequence.
             </p>
-            <div class="dark:text-white dark:bg-gray-800 p-4 border-0 overflow-auto font-mono text-left">
+            <div class="dark:text-white dark:bg-neutral-800 p-4 border-0 overflow-auto font-mono text-left">
               <p>
                 &lt;... data-av<br>
                 data-av-sequential="<em>n</em>"...&gt;
@@ -181,7 +212,7 @@
     <div class="pb-10">
       <div class="flex flex-wrap [ mx-n5 ]">
         <div class="lg:w-1/2 [ p-5 ]">
-          <div class="[ flex flex-wrap mx-n3 ] border border-gray-500 p-4 dark:bg-gray-900 min-h-full">
+          <div class="[ flex flex-wrap mx-n3 ] border border-neutral-500 p-4 dark:bg-neutral-950 min-h-full">
             <div class="p-3 w-1/2">
               <img src="http://unsplash.it/600/400" alt="" data-av="av-ex-3" data-av-resets
                 data-av-only-when-totally-in />
@@ -201,11 +232,11 @@
           </div>
         </div>
         <div class="lg:w-1/2 [ p-5 ]">
-          <div class="border border-dashed border-gray-500 p-4 dark:bg-gray-900 min-h-full">
+          <div class="border border-dashed border-neutral-500 p-4 dark:bg-neutral-950 min-h-full">
             <p class="font-serif dark:text-white pb-5">
               Basic animation but triggered only when the elements are fully in the viewport.
             </p>
-            <div class="dark:text-white dark:bg-gray-800 p-4 border-0 overflow-auto font-mono text-left">
+            <div class="dark:text-white dark:bg-neutral-800 p-4 border-0 overflow-auto font-mono text-left">
               <p>
                 &lt;... data-av<br>
                 data-av-only-when-totally-in...&gt;
@@ -220,7 +251,7 @@
     <div class="pb-10">
       <div class="flex flex-wrap [ mx-n5 ]">
         <div class="lg:w-1/2 [ p-5 ]">
-          <div class="[ flex mx-n3 ] border border-gray-500 p-4 dark:bg-gray-900 min-h-full">
+          <div class="[ flex mx-n3 ] border border-neutral-500 p-4 dark:bg-neutral-950 min-h-full">
             <div class="px-3 w-1/2">
               <img src="http://unsplash.it/600/400" alt="" data-av data-av-animation="av-style-02" data-av-resets />
             </div>
@@ -230,11 +261,11 @@
           </div>
         </div>
         <div class="lg:w-1/2 [ p-5 ]">
-          <div class="border border-dashed border-gray-500 p-4 dark:bg-gray-900 min-h-full">
+          <div class="border border-dashed border-neutral-500 p-4 dark:bg-neutral-950 min-h-full">
             <p class="font-serif dark:text-white pb-5">
               Basic animation on scroll with style 2.
             </p>
-            <div class="dark:text-white dark:bg-gray-800 p-4 border-0 overflow-auto font-mono text-left">
+            <div class="dark:text-white dark:bg-neutral-800 p-4 border-0 overflow-auto font-mono text-left">
               <p>
                 &lt;... data-av data-av-animation="av-style-02" ...&gt;
               </p>
@@ -248,7 +279,7 @@
     <div class="pb-10">
       <div class="flex flex-wrap [ mx-n5 ]">
         <div class="lg:w-1/2 [ p-5 ]">
-          <div class="[ flex mx-n3 ] border border-gray-500 p-4 dark:bg-gray-900 min-h-full">
+          <div class="[ flex mx-n3 ] border border-neutral-500 p-4 dark:bg-neutral-950 min-h-full">
             <div class="px-3 w-1/2">
               <img src="http://unsplash.it/600/400" alt="" data-av data-av-animation="av-style-03" data-av-resets />
             </div>
@@ -258,11 +289,11 @@
           </div>
         </div>
         <div class="lg:w-1/2 [ p-5 ]">
-          <div class="border border-dashed border-gray-500 p-4 dark:bg-gray-900 min-h-full">
+          <div class="border border-dashed border-neutral-500 p-4 dark:bg-neutral-950 min-h-full">
             <p class="font-serif dark:text-white pb-5">
               Basic animation on scroll with style 3.
             </p>
-            <div class="dark:text-white dark:bg-gray-800 p-4 border-0 overflow-auto font-mono text-left">
+            <div class="dark:text-white dark:bg-neutral-800 p-4 border-0 overflow-auto font-mono text-left">
               <p>
                 &lt;... data-av data-av-animation="av-style-03" ...&gt;
               </p>
@@ -276,7 +307,7 @@
     <div class="pb-10">
       <div class="flex flex-wrap [ mx-n5 ]">
         <div class="lg:w-1/2 [ p-5 ]">
-          <div class="[ flex mx-n3 ] border border-gray-500 p-4 dark:bg-gray-900 min-h-full">
+          <div class="[ flex mx-n3 ] border border-neutral-500 p-4 dark:bg-neutral-950 min-h-full">
             <div class="px-3 w-1/2">
               <img src="http://unsplash.it/600/400" alt="" data-av data-av-animation="av-style-04" data-av-resets />
             </div>
@@ -286,11 +317,11 @@
           </div>
         </div>
         <div class="lg:w-1/2 [ p-5 ]">
-          <div class="border border-dashed border-gray-500 p-4 dark:bg-gray-900 min-h-full">
+          <div class="border border-dashed border-neutral-500 p-4 dark:bg-neutral-950 min-h-full">
             <p class="font-serif dark:text-white pb-5">
               Basic animation on scroll with style 4.
             </p>
-            <div class="dark:text-white dark:bg-gray-800 p-4 border-0 overflow-auto font-mono text-left">
+            <div class="dark:text-white dark:bg-neutral-800 p-4 border-0 overflow-auto font-mono text-left">
               <p>
                 &lt;... data-av data-av-animation="av-style-04" ...&gt;
               </p>
@@ -304,7 +335,7 @@
     <div class="pb-10">
       <div class="flex flex-wrap [ mx-n5 ]">
         <div class="lg:w-1/2 [ p-5 ]">
-          <div class="[ flex mx-n3 ] border border-gray-500 p-4 dark:bg-gray-900 min-h-full">
+          <div class="[ flex mx-n3 ] border border-neutral-500 p-4 dark:bg-neutral-950 min-h-full">
             <div class="px-3 w-1/2">
               <img src="http://unsplash.it/600/400" alt="" data-av data-av-animation="av-style-05" data-av-resets />
             </div>
@@ -314,11 +345,11 @@
           </div>
         </div>
         <div class="lg:w-1/2 [ p-5 ]">
-          <div class="border border-dashed border-gray-500 p-4 dark:bg-gray-900 min-h-full">
+          <div class="border border-dashed border-neutral-500 p-4 dark:bg-neutral-950 min-h-full">
             <p class="font-serif dark:text-white pb-5">
               Basic animation on scroll with style 5.
             </p>
-            <div class="dark:text-white dark:bg-gray-800 p-4 border-0 overflow-auto font-mono text-left">
+            <div class="dark:text-white dark:bg-neutral-800 p-4 border-0 overflow-auto font-mono text-left">
               <p>
                 &lt;... data-av data-av-animation="av-style-05" ...&gt;
               </p>
@@ -332,7 +363,7 @@
     <div class="pb-10">
       <div class="flex flex-wrap [ mx-n5 ]">
         <div class="lg:w-1/2 [ p-5 ]">
-          <div class="[ flex mx-n3 ] border border-gray-500 p-4 dark:bg-gray-900 min-h-full">
+          <div class="[ flex mx-n3 ] border border-neutral-500 p-4 dark:bg-neutral-950 min-h-full">
             <div class="px-3 w-1/2">
               <img src="http://unsplash.it/600/400" alt="" data-av data-av-animation="av-style-06" data-av-resets />
             </div>
@@ -342,11 +373,11 @@
           </div>
         </div>
         <div class="lg:w-1/2 [ p-5 ]">
-          <div class="border border-dashed border-gray-500 p-4 dark:bg-gray-900 min-h-full">
+          <div class="border border-dashed border-neutral-500 p-4 dark:bg-neutral-950 min-h-full">
             <p class="font-serif dark:text-white pb-5">
               Basic animation on scroll with style 6.
             </p>
-            <div class="dark:text-white dark:bg-gray-800 p-4 border-0 overflow-auto font-mono text-left">
+            <div class="dark:text-white dark:bg-neutral-800 p-4 border-0 overflow-auto font-mono text-left">
               <p>
                 &lt;... data-av data-av-animation="av-style-06" ...&gt;
               </p>
@@ -360,7 +391,7 @@
     <div class="pb-10">
       <div class="flex flex-wrap [ mx-n5 ]">
         <div class="lg:w-1/2 [ p-5 ]">
-          <div class="[ flex mx-n3 ] border border-gray-500 p-4 dark:bg-gray-900 min-h-full">
+          <div class="[ flex mx-n3 ] border border-neutral-500 p-4 dark:bg-neutral-950 min-h-full">
             <div class="px-3 w-1/2">
               <img src="http://unsplash.it/600/400" alt="" data-av data-av-animation="av-style-07" data-av-resets />
             </div>
@@ -370,11 +401,11 @@
           </div>
         </div>
         <div class="lg:w-1/2 [ p-5 ]">
-          <div class="border border-dashed border-gray-500 p-4 dark:bg-gray-900 min-h-full">
+          <div class="border border-dashed border-neutral-500 p-4 dark:bg-neutral-950 min-h-full">
             <p class="font-serif dark:text-white pb-5">
               Basic animation on scroll with style 7.
             </p>
-            <div class="dark:text-white dark:bg-gray-800 p-4 border-0 overflow-auto font-mono text-left">
+            <div class="dark:text-white dark:bg-neutral-800 p-4 border-0 overflow-auto font-mono text-left">
               <p>
                 &lt;... data-av data-av-animation="av-style-07" ...&gt;
               </p>
@@ -388,7 +419,7 @@
     <div class="pb-10">
       <div class="flex flex-wrap [ mx-n5 ]">
         <div class="lg:w-1/2 [ p-5 ]">
-          <div class="[ flex mx-n3 ] border border-gray-500 p-4 dark:bg-gray-900 min-h-full">
+          <div class="[ flex mx-n3 ] border border-neutral-500 p-4 dark:bg-neutral-950 min-h-full">
             <div class="px-3 w-1/2">
               <img src="http://unsplash.it/600/400" alt="" data-av data-av-animation="av-style-08" data-av-resets />
             </div>
@@ -398,11 +429,11 @@
           </div>
         </div>
         <div class="lg:w-1/2 [ p-5 ]">
-          <div class="border border-dashed border-gray-500 p-4 dark:bg-gray-900 min-h-full">
+          <div class="border border-dashed border-neutral-500 p-4 dark:bg-neutral-950 min-h-full">
             <p class="font-serif dark:text-white pb-5">
               Basic animation on scroll with style 8.
             </p>
-            <div class="dark:text-white dark:bg-gray-800 p-4 border-0 overflow-auto font-mono text-left">
+            <div class="dark:text-white dark:bg-neutral-800 p-4 border-0 overflow-auto font-mono text-left">
               <p>
                 &lt;... data-av data-av-animation="av-style-08" ...&gt;
               </p>
@@ -416,7 +447,7 @@
     <div class="pb-10">
       <div class="flex flex-wrap [ mx-n5 ]">
         <div class="lg:w-1/2 [ p-5 ]">
-          <div class="[ flex mx-n3 ] border border-gray-500 p-4 dark:bg-gray-900 min-h-full">
+          <div class="[ flex mx-n3 ] border border-neutral-500 p-4 dark:bg-neutral-950 min-h-full">
             <div class="px-3 w-1/2">
               <img src="http://unsplash.it/600/400" alt="" data-av data-av-animation="av-style-09" data-av-resets />
             </div>
@@ -426,11 +457,11 @@
           </div>
         </div>
         <div class="lg:w-1/2 [ p-5 ]">
-          <div class="border border-dashed border-gray-500 p-4 dark:bg-gray-900 min-h-full">
+          <div class="border border-dashed border-neutral-500 p-4 dark:bg-neutral-950 min-h-full">
             <p class="font-serif dark:text-white pb-5">
               Basic animation on scroll with style 9.
             </p>
-            <div class="dark:text-white dark:bg-gray-800 p-4 border-0 overflow-auto font-mono text-left">
+            <div class="dark:text-white dark:bg-neutral-800 p-4 border-0 overflow-auto font-mono text-left">
               <p>
                 &lt;... data-av data-av-animation="av-style-09" ...&gt;
               </p>
@@ -444,7 +475,7 @@
     <div class="pb-10">
       <div class="flex flex-wrap [ mx-n5 ]">
         <div class="lg:w-1/2 [ p-5 ]">
-          <div class="[ flex mx-n3 ] border border-gray-500 p-4 dark:bg-gray-900 min-h-full">
+          <div class="[ flex mx-n3 ] border border-neutral-500 p-4 dark:bg-neutral-950 min-h-full">
             <div class="px-3 w-1/2">
               <img src="http://unsplash.it/600/400" alt="" data-av data-av-animation="av-style-10" data-av-resets />
             </div>
@@ -454,11 +485,11 @@
           </div>
         </div>
         <div class="lg:w-1/2 [ p-5 ]">
-          <div class="border border-dashed border-gray-500 p-4 dark:bg-gray-900 min-h-full">
+          <div class="border border-dashed border-neutral-500 p-4 dark:bg-neutral-950 min-h-full">
             <p class="font-serif dark:text-white pb-5">
               Basic animation on scroll with style 10.
             </p>
-            <div class="dark:text-white dark:bg-gray-800 p-4 border-0 overflow-auto font-mono text-left">
+            <div class="dark:text-white dark:bg-neutral-800 p-4 border-0 overflow-auto font-mono text-left">
               <p>
                 &lt;... data-av data-av-animation="av-style-10" ...&gt;
               </p>
@@ -472,7 +503,7 @@
     <div class="pb-10">
       <div class="flex flex-wrap [ mx-n5 ]">
         <div class="lg:w-1/2 [ p-5 ]">
-          <div class="[ flex mx-n3 ] border border-gray-500 p-4 dark:bg-gray-900 min-h-full">
+          <div class="[ flex mx-n3 ] border border-neutral-500 p-4 dark:bg-neutral-950 min-h-full">
             <div class="px-3 w-1/2">
               <img src="http://unsplash.it/600/400" alt="" data-av data-av-animation="av-style-11" data-av-resets />
             </div>
@@ -482,13 +513,46 @@
           </div>
         </div>
         <div class="lg:w-1/2 [ p-5 ]">
-          <div class="border border-dashed border-gray-500 p-4 dark:bg-gray-900 min-h-full">
+          <div class="border border-dashed border-neutral-500 p-4 dark:bg-neutral-950 min-h-full">
             <p class="font-serif dark:text-white pb-5">
               Basic animation on scroll with style 11.
             </p>
-            <div class="dark:text-white dark:bg-gray-800 p-4 border-0 overflow-auto font-mono text-left">
+            <div class="dark:text-white dark:bg-neutral-800 p-4 border-0 overflow-auto font-mono text-left">
               <p>
                 &lt;... data-av data-av-animation="av-style-11" ...&gt;
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- #endregion -->
+    <!-- #region basic animation style 12 -->
+    <div class="pb-10">
+      <div class="flex flex-wrap [ mx-n5 ]">
+        <div class="lg:w-1/2 [ p-5 ]">
+          <div class="[ flex mx-n3 ] border border-neutral-500 p-4 dark:bg-neutral-950 min-h-full">
+            <div class="px-3 w-full">
+              <svg xmlns="http://www.w3.org/2000/svg" class="w-full h-auto p-5" viewBox="0 0 383.49 141.03"
+                data-av="av-ex-4" data-av-resets data-av-animation="av-style-12">
+                <path
+                  d="m127.99,28.3c0-2.03-1.58-4.52-4.75-7.46-3.17-2.93-7.58-5.54-13.22-7.8-5.65-2.26-12.21-3.39-19.67-3.39-10.4,0-20.97,2.49-31.71,7.46-10.74,4.97-20.52,11.7-29.33,20.18-8.82,8.48-15.83,18.03-21.02,28.65-2.26,4.97-4.12,10.12-5.59,15.43-1.47,5.32-2.2,10.68-2.2,16.11,0,11.76,3,20.06,8.99,24.92,5.99,4.86,12.94,7.29,20.85,7.29,9.27,0,17.69-2.15,25.26-6.44s14.3-9.61,20.18-15.94,11.07-12.55,15.6-18.65c3.84-5.2,7.51-9.55,11.02-13.06,3.5-3.5,6.72-5.26,9.66-5.26,3.61,0,6.61,2.04,8.99,6.1,2.37,4.07,4.69,9.05,6.95,14.92,2.48,5.88,5.31,11.76,8.48,17.63,3.16,5.88,7.29,10.74,12.38,14.58,5.09,3.84,11.47,5.77,19.16,5.77,11.3,0,22.15-4.69,32.55-14.07,10.4-9.38,20.8-24.69,31.2-45.95v-.02c5.19-10.84,9.83-18.35,13.89-22.53,4.07-4.18,7.68-6.27,10.85-6.27,5.2,0,9.66,2.32,13.39,6.95,3.73,4.64,7.17,10.57,10.34,17.8,3.16,7.24,6.21,14.92,9.15,23.06,3.16,8.59,6.5,16.9,10,24.92,3.5,8.03,7.46,14.58,11.87,19.67s9.55,7.63,15.43,7.63c7.23,0,13.79-2.66,19.67-7.97,5.87-5.31,11.07-12.21,15.6-20.68,4.52-8.48,8.36-17.57,11.53-27.3,3.16-9.72,5.54-19.1,7.12-28.15,1.58-9.04,2.37-16.61,2.37-22.72,0-8.59-1.3-16.28-3.9-23.06v.02c-2.59-6.78-6.49-10.17-11.69-10.17-2.94,0-5.65,1.02-8.14,3.05-2.49,2.03-3.73,4.18-3.73,6.44,0,1.58.34,2.94,1.02,4.07.68,1.13,1.47,2.49,2.37,4.07,1.81,2.71,3.61,6.33,5.42,10.85,1.81,4.53,2.71,11.08,2.71,19.67,0,7.01-.74,14.98-2.2,23.91-1.47,8.93-3.62,17.46-6.44,25.6-2.83,8.14-6.27,14.87-10.34,20.18s-8.7,7.97-13.9,7.97c-5.88,0-10.8-4.24-14.75-12.72-3.96-8.48-7.86-18.36-11.7-29.67-3.17-9.27-6.67-18.42-10.51-27.47-3.85-9.04-8.37-16.5-13.57-22.38-5.2-5.88-11.53-8.82-18.99-8.82-7.92,0-14.53,3.11-19.84,9.32-5.31,6.22-11.59,16.67-18.82,31.37v.02c-15.37,31.87-31.87,47.8-49.5,47.8-6.1,0-11.19-1.58-15.26-4.75-4.07-3.16-7.46-7.17-10.17-12.04-2.71-4.86-5.2-9.89-7.46-15.09-2.94-6.78-6.1-12.89-9.49-18.31s-8.37-8.14-14.92-8.14c-4.97,0-10,2.43-15.09,7.29s-10.23,10.57-15.43,17.12c-4.53,5.65-9.38,11.31-14.58,16.95-5.2,5.65-10.85,10.29-16.95,13.9-6.1,3.62-12.77,5.43-20.01,5.43-6.56,0-11.7-2.2-15.43-6.61s-5.59-10.68-5.59-18.82c0-9.49,1.92-18.42,5.76-26.79,3.84-8.36,8.87-15.65,15.09-21.87s13.22-11.13,21.02-14.75c7.8-3.61,15.54-5.42,23.23-5.42,7.23,0,12.89,1.3,16.95,3.9,4.07,2.6,7.46,5.37,10.17,8.31,3.16,3.62,5.99,5.42,8.48,5.42s4.97-1.24,7.46-3.73c2.48-2.48,3.73-4.97,3.73-7.46"
+                  class="stroke-black dark:stroke-white stroke-1 fill-transparent" />
+              </svg>
+            </div>
+          </div>
+        </div>
+        <div class="lg:w-1/2 [ p-5 ]">
+          <div class="border border-dashed border-neutral-500 p-4 dark:bg-neutral-950 min-h-full">
+            <p class="font-serif dark:text-white pb-5">
+              <strong>SVG only.</strong> Drawing animation on scroll with style 12. SVG must have a visible <span
+                class="font-mono">stroke</span>,
+              <span class="font-mono">fill</span>-only shapes won't be affected. Powered by <a
+                href="https://animejs.com" class="border-b dark:border-white" target="_blank">animejs</a>.
+            </p>
+            <div class="dark:text-white dark:bg-neutral-800 p-4 border-0 overflow-auto font-mono text-left">
+              <p>
+                &lt;svg... data-av data-av-animation="av-style-12" ...&gt;
               </p>
             </div>
           </div>

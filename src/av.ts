@@ -4,6 +4,7 @@ import { AfterViewportJsGroup } from "./av-group";
 import { InViewport } from "./av-viewports";
 
 import imagesLoaded from "imagesloaded";
+import anime from "animejs";
 
 export class AfterViewportJs {
   public options!: AfterViewportJsOptions;
@@ -156,7 +157,7 @@ export class AfterViewportJs {
           group: group,
           animation: eAnimation,
           duration: eDuration,
-          delay: eDelay,
+          delay: eDelay.toString(),
         });
       });
     });
@@ -217,28 +218,11 @@ export class AfterViewportJs {
   protected init(): void {
     this.groups.forEach((group) => {
       group.items.forEach((item) => {
-        switch (item.animation) {
-          case "av-style-01":
-          case "av-style-02":
-          case "av-style-03":
-          case "av-style-04":
-          case "av-style-05":
-          case "av-style-06":
-          case "av-style-07":
-          case "av-style-08":
-          case "av-style-09":
-          case "av-style-10":
-          case "av-style-11":
-            this.elAddWrapper(item);
-            item.wrapper?.setAttribute(
-              "class",
-              `av-animation av-animation--${item.animation} av-animation-duration av-animation-duration--${item.duration} av-animation-delay av-animation-delay--${item.delay}`
-            );
-            break;
-
-          default:
-            break;
-        }
+        this.elAddWrapper(item);
+        item.wrapper?.setAttribute(
+          "class",
+          `av-animation av-animation--${item.animation} av-animation-duration av-animation-duration--${item.duration} av-animation-delay av-animation-delay--${item.delay}`
+        );
       });
     });
   }
@@ -267,6 +251,22 @@ export class AfterViewportJs {
                   "av-animation-delay--" + Number(item.delay) * counter
                 );
                 item.wrapper?.classList.add("av-ani-end");
+                switch (item.animation) {
+                  case "av-style-12":
+                    anime({
+                      targets: item.element.querySelector("path"),
+                      strokeDashoffset: [anime.setDashoffset, 0],
+                      easing: "easeInOutSine",
+                      duration: Number.parseInt(item.duration),
+                      delay: Number(item.delay) * counter,
+                      direction: "normal",
+                      loop: false,
+                    });
+                    break;
+
+                  default:
+                    break;
+                }
                 counter++;
               }
             }
@@ -274,6 +274,22 @@ export class AfterViewportJs {
           } else {
             if (!item.wrapper?.classList.contains("av-ani-end")) {
               item.wrapper?.classList.add("av-ani-end");
+              switch (item.animation) {
+                case "av-style-12":
+                  anime({
+                    targets: item.element.querySelector("path"),
+                    strokeDashoffset: [anime.setDashoffset, 0],
+                    easing: "easeInOutSine",
+                    duration: Number.parseInt(item.duration),
+                    delay: Number.parseInt(item.delay),
+                    direction: "normal",
+                    loop: false,
+                  });
+                  break;
+
+                default:
+                  break;
+              }
             }
           }
           /* if the item is going out of the viewport i manage resets */
@@ -281,6 +297,22 @@ export class AfterViewportJs {
           /* only if the group has the reset active */
           if (group.resets) {
             item.wrapper?.classList.remove("av-ani-end");
+            switch (item.animation) {
+              case "av-style-12":
+                anime({
+                  targets: item.element.querySelector("path"),
+                  strokeDashoffset: [0, anime.setDashoffset],
+                  easing: "easeInOutSine",
+                  duration: Number.parseInt(item.duration),
+                  delay: Number.parseInt(item.delay),
+                  direction: "normal",
+                  loop: false,
+                });
+                break;
+
+              default:
+                break;
+            }
           }
         }
       });
