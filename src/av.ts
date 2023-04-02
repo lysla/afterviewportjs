@@ -19,13 +19,25 @@ export class AfterViewportJs {
     elements.forEach((element) => {
       /* the group name if present */
       let gName = element.getAttribute("data-av") ?? "";
+      /* options override */
+      if (options?.group) {
+        gName = options.group;
+      }
 
       /* the sequence of the group */
       let gSequential = element.getAttribute("data-av-sequential") ?? false;
       gSequential = gSequential !== false ? true : false;
+      /* options override */
+      if (options?.sequential) {
+        gSequential = options.sequential;
+      }
 
       /* if this group resets */
       let gResets = element.hasAttribute("data-av-resets") ? true : false;
+      /* options override */
+      if (options?.resets) {
+        gResets = options.resets;
+      }
 
       /* if this group animate only when totally in */
       let gOnlyWhenTotallyIn = element.hasAttribute(
@@ -33,6 +45,10 @@ export class AfterViewportJs {
       )
         ? true
         : false;
+      /* options override */
+      if (options?.onlyWhenTotallyIn) {
+        gOnlyWhenTotallyIn = options.onlyWhenTotallyIn;
+      }
 
       /* creation of the groups array */
       let group: AfterViewportJsGroup = {
@@ -53,6 +69,9 @@ export class AfterViewportJs {
     /* assignment of the relative items to the group */
     this.groups.forEach((group) => {
       let elements = document.querySelectorAll(`[data-av="${group.name}"]`);
+      if (selector != "[data-av]") {
+        elements = document.querySelectorAll(selector);
+      }
       let elementsArray = Array.from(elements);
 
       /* if there needs to be a specific sequence */
@@ -60,14 +79,31 @@ export class AfterViewportJs {
         elementsArray.sort((a, b) => {
           let aVal = a.getAttribute("data-av-sequential") ?? "";
           let bVal = b.getAttribute("data-av-sequential") ?? "";
+
+          /* options override */
+          let aIndex = elementsArray.indexOf(a);
+          let bIndex = elementsArray.indexOf(b);
+          if (
+            options?.optionsItem &&
+            options.optionsItem[aIndex].sequentialOrder
+          ) {
+            aVal = options.optionsItem[aIndex].sequentialOrder ?? "";
+          }
+          if (
+            options?.optionsItem &&
+            options.optionsItem[bIndex].sequentialOrder
+          ) {
+            bVal = options.optionsItem[bIndex].sequentialOrder ?? "";
+          }
+
           if (aVal > bVal) return 1;
           if (aVal < bVal) return -1;
           return 0;
         });
       }
 
-      elementsArray.forEach((element) => {
-        let defaultDuration = "300";
+      elementsArray.forEach((element, i) => {
+        let defaultDuration = "600";
         let latestAddedItemDuration =
           group.items.length > 0
             ? group.items[group.items.length - 1].duration
@@ -78,13 +114,37 @@ export class AfterViewportJs {
             : "0";
 
         /* the element animation */
+        let defaultAnimation = "av-style-01";
         let eAnimation =
-          element.getAttribute("data-av-animation") ?? "av-style-01";
+          element.getAttribute("data-av-animation") ?? defaultAnimation;
+        /* options override */
+        if (options?.animation) {
+          eAnimation = options.animation;
+        }
+        if (options?.optionsItem && options.optionsItem[i].animation) {
+          eAnimation = options.optionsItem[i].animation ?? defaultAnimation;
+        }
+
         /* the element animation duration */
         let eDuration =
           element.getAttribute("data-av-animation-duration") ?? defaultDuration;
+        /* options override */
+        if (options?.duration) {
+          eDuration = options.duration;
+        }
+        if (options?.optionsItem && options.optionsItem[i].duration) {
+          eDuration = options.optionsItem[i].duration ?? defaultDuration;
+        }
+
         /* the element animation delay */
         let eDelay = element.getAttribute("data-av-animation-delay") ?? 0;
+        /* options override */
+        if (options?.delay) {
+          eDelay = options.delay;
+        }
+        if (options?.optionsItem && options.optionsItem[i].delay) {
+          eDelay = options.optionsItem[i].delay ?? 0;
+        }
         eDelay = eDelay
           ? eDelay
           : group.sequential
@@ -101,7 +161,6 @@ export class AfterViewportJs {
       });
     });
 
-    console.log(this.groups);
     this.startBooting();
 
     window.addEventListener("load", () => {
