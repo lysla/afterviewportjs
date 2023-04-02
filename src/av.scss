@@ -1,5 +1,5 @@
 .av-animation-duration {
-  transition-duration: 300ms;
+  transition-duration: 600ms;
   $i: 0;
   @while $i <= 5000 {
     $i: $i + 100;
