@@ -18,6 +18,15 @@ export class AfterViewportJs {
     let elements = document.querySelectorAll(selector);
 
     elements.forEach((element) => {
+      /* check if typewriter effect is requested */
+      let gTypewriter = element.hasAttribute("data-av-typewriter")
+        ? true
+        : false;
+      /* options override */
+      if (options?.typewriter) {
+        gTypewriter = options.typewriter;
+      }
+
       /* the group name if present */
       let gName = element.getAttribute("data-av") ?? "";
       /* options override */
@@ -51,12 +60,56 @@ export class AfterViewportJs {
         gOnlyWhenTotallyIn = options.onlyWhenTotallyIn;
       }
 
+      /* if the typewriter effect is requested i adjust the dom and refresh the elements array */
+      if (gTypewriter) {
+        /* i adjust the group name so it doesn't conflict with other potential groups that don't want the typewriter effect */
+        gName = gName + "--typewriter";
+        let text = element.textContent;
+        let letters =
+          text
+            ?.trim()
+            .replace(/\s+/g, " ")
+            .replace(/\r?\n|\r/g, "")
+            .split("") ?? [];
+        element.textContent = "";
+        let minSingleDuration = 10;
+        let singleDuration = minSingleDuration;
+        if (element.hasAttribute("data-av-animation-duration")) {
+          singleDuration =
+            Number(element.getAttribute("data-av-animation-duration")) /
+            letters.length;
+        }
+        singleDuration =
+          singleDuration < minSingleDuration
+            ? minSingleDuration
+            : singleDuration > minSingleDuration * 100
+            ? minSingleDuration * 100
+            : singleDuration;
+        for (let l = letters.length - 1; l >= 0; l--) {
+          const wrapper = document.createElement("span");
+          element.insertAdjacentElement("afterend", wrapper);
+          wrapper.textContent = letters[l];
+          let attributes = element.attributes;
+
+          for (let i = 0; i < attributes.length; i++) {
+            const attr = attributes[i];
+            wrapper.setAttribute(attr.name, attr.value);
+          }
+          wrapper.setAttribute("data-av", gName);
+          wrapper.setAttribute(
+            "data-av-animation-duration",
+            singleDuration.toString()
+          );
+        }
+      }
+
       /* creation of the groups array */
       let group: AfterViewportJsGroup = {
         name: gName,
         sequential: gSequential,
         resets: gResets,
         onlyWhenTotallyIn: gOnlyWhenTotallyIn,
+        typewriter: gTypewriter,
         items: [],
       };
 
@@ -146,6 +199,7 @@ export class AfterViewportJs {
         if (options?.optionsItem && options.optionsItem[i].delay) {
           eDelay = options.optionsItem[i].delay ?? 0;
         }
+
         eDelay = eDelay
           ? eDelay
           : group.sequential
@@ -221,7 +275,15 @@ export class AfterViewportJs {
         this.elAddWrapper(item);
         item.wrapper?.setAttribute(
           "class",
-          `av-animation av-animation--${item.animation} av-animation-duration av-animation-duration--${item.duration} av-animation-delay av-animation-delay--${item.delay}`
+          `av-animation av-animation--${
+            item.animation
+          } av-animation-duration av-animation-delay ${
+            group.typewriter ? "av-animation-typewriter" : ""
+          }`
+        );
+        item.wrapper?.setAttribute(
+          "style",
+          `transition-duration:${item.duration}ms;animation-duration:${item.duration}ms;transition-delay:${item.delay}ms;animation-delay:${item.delay}ms;`
         );
       });
     });
@@ -247,10 +309,15 @@ export class AfterViewportJs {
                 (!group.onlyWhenTotallyIn &&
                   this.isInViewport(item) == InViewport.Partial)
               ) {
-                item.wrapper?.classList.add(
-                  "av-animation-delay--" + Number(item.delay) * counter
-                );
                 item.wrapper?.classList.add("av-ani-end");
+                item.wrapper?.setAttribute(
+                  "style",
+                  `transition-duration:${item.duration}ms;animation-duration:${
+                    item.duration
+                  }ms;transition-delay:${
+                    Number(item.delay) * counter
+                  }ms;animation-delay:${Number(item.delay) * counter}ms;`
+                );
                 switch (item.animation) {
                   case "av-style-12":
                     anime({
@@ -274,6 +341,10 @@ export class AfterViewportJs {
           } else {
             if (!item.wrapper?.classList.contains("av-ani-end")) {
               item.wrapper?.classList.add("av-ani-end");
+              item.wrapper?.setAttribute(
+                "style",
+                `transition-duration:${item.duration}ms;animation-duration:${item.duration}ms;transition-delay:${item.delay}ms;animation-delay:${item.delay}ms;`
+              );
               switch (item.animation) {
                 case "av-style-12":
                   anime({
@@ -297,6 +368,7 @@ export class AfterViewportJs {
           /* only if the group has the reset active */
           if (group.resets) {
             item.wrapper?.classList.remove("av-ani-end");
+            item.wrapper?.setAttribute("style", "");
             switch (item.animation) {
               case "av-style-12":
                 anime({
