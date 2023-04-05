@@ -8,4 +8,5 @@ interface AfterViewportJsGroupInterface {
   sequential: string | boolean;
   resets: boolean;
   onlyWhenTotallyIn: boolean;
+  typewriter: boolean;
 }
