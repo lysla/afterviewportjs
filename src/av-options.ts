@@ -7,6 +7,7 @@ interface AfterViewportJsOptionsInterface {
   sequential?: boolean;
   resets?: boolean;
   onlyWhenTotallyIn?: boolean;
+  typewriter?: boolean;
   animation?: string;
   duration?: string;
   delay?: string;
