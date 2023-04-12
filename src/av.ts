@@ -206,12 +206,23 @@ export class AfterViewportJs {
           ? Number(latestAddedItemDuration) + Number(latestAddedItemDelay)
           : eDelay;
 
+        /* the element parallax */
+        let eParallax = element.hasAttribute("data-av-parallax") ? true : false;
+        /* options override */
+        if (options?.parallax) {
+          eParallax = options.parallax;
+        }
+        if (options?.optionsItem && options.optionsItem[i].parallax) {
+          eParallax = options.optionsItem[i].parallax ?? eParallax;
+        }
+
         group.items.push({
           element: element,
           group: group,
           animation: eAnimation,
           duration: eDuration,
           delay: eDelay.toString(),
+          parallax: eParallax,
         });
       });
     });
@@ -289,7 +300,7 @@ export class AfterViewportJs {
     });
   }
 
-  private listenersCallback(): void {
+  private listenersCallback(event: any): void {
     this.groups.forEach((group: AfterViewportJsGroup) => {
       group.items.forEach((item: AfterViewportJsItem) => {
         /* if the item is to be animated (in viewport, totally o partially) */
@@ -321,7 +332,7 @@ export class AfterViewportJs {
                 switch (item.animation) {
                   case "av-style-12":
                     anime({
-                      targets: item.element.querySelector("path"),
+                      targets: item.element.querySelectorAll("path"),
                       strokeDashoffset: [anime.setDashoffset, 0],
                       easing: "linear",
                       duration: Number.parseInt(item.duration),
@@ -348,7 +359,7 @@ export class AfterViewportJs {
               switch (item.animation) {
                 case "av-style-12":
                   anime({
-                    targets: item.element.querySelector("path"),
+                    targets: item.element.querySelectorAll("path"),
                     strokeDashoffset: [anime.setDashoffset, 0],
                     easing: "linear",
                     duration: Number.parseInt(item.duration),
@@ -363,6 +374,42 @@ export class AfterViewportJs {
               }
             }
           }
+          /* if the item needs parallax */
+          if (item.parallax && event.type == "wheel") {
+            /* i take the original translate y position */
+            let oTranslate: any = window
+              .getComputedStyle(item.element)
+              .getPropertyValue("transform");
+            if (oTranslate != "none") {
+              oTranslate = oTranslate.split(",")[5].trim().replace(")", "");
+            } else {
+              oTranslate = 0;
+            }
+
+            /* i calculate the y position based on the vertical center of the element */
+            /* let elVCenter =
+              item.element.getBoundingClientRect().top +
+              item.element.clientHeight / 2;
+            let wVCenter = window.innerHeight / 2; */
+
+            /* i define the multiplier */
+            let xBase = 20;
+            let xDef = (xBase / item.element.clientHeight) * 100;
+            //xDef = xDef < xBase ? xBase : xDef;
+
+            /* i check what direction the user is scrolling */
+            if (event.deltaY < 0) {
+              oTranslate = Number(oTranslate) + xDef;
+            } else {
+              /* scrolling down */
+              oTranslate = Number(oTranslate) - xDef;
+            }
+
+            item.element.setAttribute(
+              "style",
+              `transition-property: transform; transition-duration: 600ms; transition-timing-function: ease; transform: translateY(${oTranslate}px)`
+            );
+          }
           /* if the item is going out of the viewport i manage resets */
         } else {
           /* only if the group has the reset active */
@@ -372,7 +419,7 @@ export class AfterViewportJs {
             switch (item.animation) {
               case "av-style-12":
                 anime({
-                  targets: item.element.querySelector("path"),
+                  targets: item.element.querySelectorAll("path"),
                   strokeDashoffset: [0, anime.setDashoffset],
                   easing: "linear",
                   duration: Number.parseInt(item.duration),
@@ -394,8 +441,17 @@ export class AfterViewportJs {
   private addListeners(): void {
     window.addEventListener(
       "scroll",
-      () => {
-        this.listenersCallback();
+      (event) => {
+        this.listenersCallback(event);
+      },
+      {
+        passive: true,
+      }
+    );
+    window.addEventListener(
+      "wheel",
+      (event) => {
+        this.listenersCallback(event);
       },
       {
         passive: true,
@@ -403,8 +459,8 @@ export class AfterViewportJs {
     );
     window.addEventListener(
       "resize",
-      () => {
-        this.listenersCallback();
+      (event) => {
+        this.listenersCallback(event);
       },
       {
         passive: true,
