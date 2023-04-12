@@ -332,7 +332,7 @@ export class AfterViewportJs {
                 switch (item.animation) {
                   case "av-style-12":
                     anime({
-                      targets: item.element.querySelector("path"),
+                      targets: item.element.querySelectorAll("path"),
                       strokeDashoffset: [anime.setDashoffset, 0],
                       easing: "linear",
                       duration: Number.parseInt(item.duration),
@@ -359,7 +359,7 @@ export class AfterViewportJs {
               switch (item.animation) {
                 case "av-style-12":
                   anime({
-                    targets: item.element.querySelector("path"),
+                    targets: item.element.querySelectorAll("path"),
                     strokeDashoffset: [anime.setDashoffset, 0],
                     easing: "linear",
                     duration: Number.parseInt(item.duration),
@@ -419,7 +419,7 @@ export class AfterViewportJs {
             switch (item.animation) {
               case "av-style-12":
                 anime({
-                  targets: item.element.querySelector("path"),
+                  targets: item.element.querySelectorAll("path"),
                   strokeDashoffset: [0, anime.setDashoffset],
                   easing: "linear",
                   duration: Number.parseInt(item.duration),
