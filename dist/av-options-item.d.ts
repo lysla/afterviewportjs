@@ -4,5 +4,6 @@ interface AfterViewportJsOptionsItemInterface {
     duration?: string;
     delay?: string;
     sequentialOrder?: string;
+    parallax?: boolean;
 }
 export {};

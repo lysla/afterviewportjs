@@ -9,6 +9,7 @@ interface AfterViewportJsOptionsInterface {
     animation?: string;
     duration?: string;
     delay?: string;
+    parallax?: boolean;
     optionsItem?: Array<AfterViewportJsOptionsItem>;
 }
 export {};
