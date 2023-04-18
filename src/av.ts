@@ -207,7 +207,7 @@ export class AfterViewportJs {
           : eDelay;
 
         /* the element parallax */
-        let eParallax = element.hasAttribute("data-av-parallax") ? true : false;
+        let eParallax = element.hasAttribute("data-av-parallax") ? 1 : 0;
         /* options override */
         if (options?.parallax) {
           eParallax = options.parallax;
@@ -375,7 +375,11 @@ export class AfterViewportJs {
             }
           }
           /* if the item needs parallax */
-          if (item.parallax && event.type == "wheel") {
+          if (
+            item.parallax &&
+            event.type == "scroll" &&
+            this.isInViewport(item)
+          ) {
             /* i take the original translate y position */
             let oTranslate: any = window
               .getComputedStyle(item.element)
@@ -386,16 +390,9 @@ export class AfterViewportJs {
               oTranslate = 0;
             }
 
-            /* i calculate the y position based on the vertical center of the element */
-            /* let elVCenter =
-              item.element.getBoundingClientRect().top +
-              item.element.clientHeight / 2;
-            let wVCenter = window.innerHeight / 2; */
-
             /* i define the multiplier */
             let xBase = 20;
             let xDef = (xBase / item.element.clientHeight) * 100;
-            //xDef = xDef < xBase ? xBase : xDef;
 
             /* i check what direction the user is scrolling */
             if (event.deltaY < 0) {
@@ -441,15 +438,6 @@ export class AfterViewportJs {
   private addListeners(): void {
     window.addEventListener(
       "scroll",
-      (event) => {
-        this.listenersCallback(event);
-      },
-      {
-        passive: true,
-      }
-    );
-    window.addEventListener(
-      "wheel",
       (event) => {
         this.listenersCallback(event);
       },

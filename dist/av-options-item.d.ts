@@ -1,9 +1,10 @@
-export type AfterViewportJsOptionsItem = Partial<AfterViewportJsOptionsItemInterface>;
+export type AfterViewportJsOptionsItem =
+  Partial<AfterViewportJsOptionsItemInterface>;
 interface AfterViewportJsOptionsItemInterface {
-    animation?: string;
-    duration?: string;
-    delay?: string;
-    sequentialOrder?: string;
-    parallax?: boolean;
+  animation?: string;
+  duration?: string;
+  delay?: string;
+  sequentialOrder?: string;
+  parallax?: int;
 }
 export {};
