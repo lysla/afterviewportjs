@@ -10,7 +10,11 @@ export default defineConfig({
       fileName: "afterviewportjs",
     },
   },
-  plugins: [dts()],
+  plugins: [
+    dts({
+      insertTypesEntry: true,
+    }),
+  ],
   server: {
     port: 8080,
     hot: true,
