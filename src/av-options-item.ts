@@ -6,5 +6,5 @@ interface AfterViewportJsOptionsItemInterface {
   duration?: string;
   delay?: string;
   sequentialOrder?: string;
-  parallax?: number;
+  parallax?: any;
 }
