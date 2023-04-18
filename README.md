@@ -26,6 +26,12 @@ import "@lysla/afterviewportjs";
 import AfterViewportJs from "@lysla/afterviewportjs";
 ```
 
+Import the style file wherever you compile SCSS.
+
+```scss
+@import "../../node_modules/@lysla/afterviewportjs/src/av.scss";
+```
+
 ### manually
 
 Download this repository and include in your HTML page .js and .css file you will find within the `dist` directory.
