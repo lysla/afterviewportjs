@@ -10,4 +10,5 @@ interface AfterViewportJsItemInterface {
   duration: string;
   delay: string;
   parallax: any;
+  inline: boolean;
 }
