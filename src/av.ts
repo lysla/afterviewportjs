@@ -411,7 +411,6 @@ export class AfterViewportJs {
             (this.isInViewport(item) == InViewport.Partial ||
               this.isInViewport(item) == InViewport.In)
           ) {
-            console.log("found parallax!");
             /* i take the original translate y position */
             let oTranslate: any = window
               .getComputedStyle(item.element)
@@ -437,7 +436,7 @@ export class AfterViewportJs {
 
             item.element.setAttribute(
               "style",
-              `transition-property: transform; transition-duration: 600ms; transition-timing-function: ease; transform: translateY(${oTranslate}px) scale(1.5);`
+              `transition-property: transform; transition-duration: 600ms; transition-timing-function: ease; transform: translateY(${oTranslate}px);`
             );
           }
           /* if the item is going out of the viewport i manage resets */
@@ -463,8 +462,6 @@ export class AfterViewportJs {
                 break;
             }
             if (Number.parseFloat(item.parallax) > 0) {
-              console.log(Number.parseFloat(item.parallax));
-              console.log("im paralax!");
               item.element.setAttribute(
                 "style",
                 `transition-property: transform; transition-duration: 600ms; transition-timing-function: ease; transform: translateY(0);`
