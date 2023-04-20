@@ -12,5 +12,6 @@ interface AfterViewportJsOptionsInterface {
   duration?: string;
   delay?: string;
   parallax?: boolean;
+  inline?: boolean;
   optionsItem?: Array<AfterViewportJsOptionsItem>;
 }

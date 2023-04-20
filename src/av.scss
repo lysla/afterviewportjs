@@ -8,6 +8,9 @@
 .av-animation {
   @extend .av-animation-easing--linear;
   position: relative;
+  &--inline {
+    display: inline-block;
+  }
   &--av-style-01 {
     transition-property: opacity;
     opacity: 0;

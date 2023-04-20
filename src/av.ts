@@ -60,6 +60,15 @@ export class AfterViewportJs {
         gOnlyWhenTotallyIn = options.onlyWhenTotallyIn;
       }
 
+      /* if this group animate only when totally in */
+      let gInline = element.hasAttribute("data-av-only-when-totally-in")
+        ? true
+        : false;
+      /* options override */
+      if (options?.inline) {
+        gInline = options.inline;
+      }
+
       /* if the typewriter effect is requested i adjust the dom and refresh the elements array */
       if (gTypewriter) {
         /* i adjust the group name so it doesn't conflict with other potential groups that don't want the typewriter effect */
@@ -110,6 +119,7 @@ export class AfterViewportJs {
         resets: gResets,
         onlyWhenTotallyIn: gOnlyWhenTotallyIn,
         typewriter: gTypewriter,
+        inline: gInline,
         items: [],
       };
 
@@ -216,6 +226,16 @@ export class AfterViewportJs {
           eParallax = options.optionsItem[i].parallax ?? eParallax;
         }
 
+        /* the element inline */
+        let eInline = element.hasAttribute("data-av-inline") ? true : false;
+        /* options override */
+        if (options?.inline) {
+          eInline = options.inline;
+        }
+        if (options?.optionsItem && options.optionsItem[i].inline) {
+          eInline = options.optionsItem[i].inline ?? eInline;
+        }
+
         group.items.push({
           element: element,
           group: group,
@@ -223,11 +243,14 @@ export class AfterViewportJs {
           duration: eDuration,
           delay: eDelay.toString(),
           parallax: eParallax,
+          inline: eInline,
         });
       });
     });
 
     this.startBooting();
+
+    //console.log(this.groups);
 
     window.addEventListener("load", () => {
       imagesLoaded("body", { background: true }, () => {
@@ -290,7 +313,7 @@ export class AfterViewportJs {
             item.animation
           } av-animation-duration av-animation-delay ${
             group.typewriter ? "av-animation-typewriter" : ""
-          }`
+          } ${item.inline ? "av-animation--inline" : ""}`
         );
         item.wrapper?.setAttribute(
           "style",
