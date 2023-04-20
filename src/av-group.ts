@@ -9,4 +9,5 @@ interface AfterViewportJsGroupInterface {
   resets: boolean;
   onlyWhenTotallyIn: boolean;
   typewriter: boolean;
+  inline: boolean;
 }
