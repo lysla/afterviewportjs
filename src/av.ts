@@ -11,6 +11,9 @@ export class AfterViewportJs {
 
   private groups: AfterViewportJsGroup[] = [];
 
+  private previousScrollTop: number = 0;
+  private currentScrollTop: number = 0;
+
   constructor(
     selector: string = "[data-av]",
     options?: AfterViewportJsOptions
@@ -217,7 +220,11 @@ export class AfterViewportJs {
           : eDelay;
 
         /* the element parallax */
-        let eParallax = element.hasAttribute("data-av-parallax") ? true : false;
+        let eParallax = element.hasAttribute("data-av-parallax")
+          ? element.getAttribute("data-av-parallax")
+            ? element.getAttribute("data-av-parallax")
+            : "1"
+          : "0";
         /* options override */
         if (options?.parallax) {
           eParallax = options.parallax;
@@ -398,7 +405,12 @@ export class AfterViewportJs {
             }
           }
           /* if the item needs parallax */
-          if (item.parallax && event.type == "wheel") {
+          if (
+            Number.parseFloat(item.parallax) > 0 &&
+            event.type == "scroll" &&
+            (this.isInViewport(item) == InViewport.Partial ||
+              this.isInViewport(item) == InViewport.In)
+          ) {
             /* i take the original translate y position */
             let oTranslate: any = window
               .getComputedStyle(item.element)
@@ -408,29 +420,23 @@ export class AfterViewportJs {
             } else {
               oTranslate = 0;
             }
-
-            /* i calculate the y position based on the vertical center of the element */
-            /* let elVCenter =
-              item.element.getBoundingClientRect().top +
-              item.element.clientHeight / 2;
-            let wVCenter = window.innerHeight / 2; */
-
             /* i define the multiplier */
-            let xBase = 20;
-            let xDef = (xBase / item.element.clientHeight) * 100;
-            //xDef = xDef < xBase ? xBase : xDef;
+            let xBase = Number.parseFloat(item.parallax) * 10;
+            let xDef = xBase;
 
             /* i check what direction the user is scrolling */
-            if (event.deltaY < 0) {
-              oTranslate = Number(oTranslate) + xDef;
-            } else {
+            this.currentScrollTop =
+              window.pageYOffset || document.documentElement.scrollTop;
+            if (this.currentScrollTop > this.previousScrollTop) {
               /* scrolling down */
               oTranslate = Number(oTranslate) - xDef;
+            } else if (this.currentScrollTop < this.previousScrollTop) {
+              oTranslate = Number(oTranslate) + xDef;
             }
 
             item.element.setAttribute(
               "style",
-              `transition-property: transform; transition-duration: 600ms; transition-timing-function: ease; transform: translateY(${oTranslate}px)`
+              `transition-property: transform; transition-duration: 600ms; transition-timing-function: ease; transform: translateY(${oTranslate}px);`
             );
           }
           /* if the item is going out of the viewport i manage resets */
@@ -455,10 +461,17 @@ export class AfterViewportJs {
               default:
                 break;
             }
+            if (Number.parseFloat(item.parallax) > 0) {
+              item.element.setAttribute(
+                "style",
+                `transition-property: transform; transition-duration: 600ms; transition-timing-function: ease; transform: translateY(0);`
+              );
+            }
           }
         }
       });
     });
+    this.previousScrollTop = this.currentScrollTop;
   }
 
   private addListeners(): void {
