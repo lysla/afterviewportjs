@@ -133,12 +133,10 @@
         <div class="lg:w-1/2 [ p-5 ]">
           <div class="[ flex mx-n3 ] border border-neutral-500 p-4 dark:bg-neutral-950 min-h-full">
             <div class="px-3 w-1/2">
-              <img src="http://unsplash.it/600/400" alt="" data-av="av-ex-parallax" data-av-parallax="0.5"
-                data-av-resets />
+              <img src="http://unsplash.it/600/400" alt="" data-av="av-ex-parallax" data-av-parallax data-av-resets />
             </div>
             <div class="px-3 w-1/2">
-              <img src="http://unsplash.it/500/400" alt="" data-av="av-ex-parallax" data-av-parallax="0.8"
-                data-av-resets />
+              <img src="http://unsplash.it/500/400" alt="" data-av="av-ex-parallax" data-av-parallax data-av-resets />
             </div>
           </div>
         </div>
@@ -150,6 +148,36 @@
             <div class="dark:text-white dark:bg-neutral-800 p-4 border-0 overflow-auto font-mono text-left">
               <p>
                 &lt;... data-av data-av-parallax ...&gt;
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- #endregion -->
+    <!-- #region parallax depths -->
+    <div class="pb-10">
+      <div class="flex flex-wrap [ mx-n5 ]">
+        <div class="lg:w-1/2 [ p-5 ]">
+          <div class="[ flex mx-n3 ] border border-neutral-500 p-4 dark:bg-neutral-950 min-h-full">
+            <div class="px-3 w-1/2">
+              <img src="http://unsplash.it/600/400" alt="" data-av="av-ex-parallax" data-av-parallax="1"
+                data-av-resets />
+            </div>
+            <div class="px-3 w-1/2">
+              <img src="http://unsplash.it/500/400" alt="" data-av="av-ex-parallax" data-av-parallax="2"
+                data-av-resets />
+            </div>
+          </div>
+        </div>
+        <div class="lg:w-1/2 [ p-5 ]">
+          <div class="border border-dashed border-neutral-500 p-4 dark:bg-neutral-950 min-h-full">
+            <p class="font-serif dark:text-white pb-5">
+              Animation with parallax effect with different depths.
+            </p>
+            <div class="dark:text-white dark:bg-neutral-800 p-4 border-0 overflow-auto font-mono text-left">
+              <p>
+                &lt;... data-av data-av-parallax="<em>n</em>" ...&gt;
               </p>
             </div>
           </div>
@@ -724,8 +752,8 @@
     <!-- #endregion -->
   </div>
 
-  <!-- <script type="module" src="./dist/afterviewportjs.js"></script> -->
-  <script type="module" src="./main.js"></script>
+  <script type="module" src="./dist/afterviewportjs.js"></script>
+  <!-- <script type="module" src="./main.js"></script> -->
 </body>
 
 </html>
