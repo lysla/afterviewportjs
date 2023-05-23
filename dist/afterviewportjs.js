@@ -1180,11 +1180,14 @@ class $e {
             let d = Number.parseFloat(n.parallax) * 10;
             this.currentScrollTop = window.pageYOffset || document.documentElement.scrollTop, this.currentScrollTop > this.previousScrollTop ? o = Number(o) - d : this.currentScrollTop < this.previousScrollTop && (o = Number(o) + d), n.element.setAttribute(
               "style",
-              `transition-property: transform; transition-duration: 600ms; transition-timing-function: ease; transform: translateY(${o}px);`
+              `transition-property: transform; transition-duration: 400ms; transition-timing-function: ease; transform: translateY(${o}px);`
             );
           }
         } else if (t.resets) {
-          switch ((f = n.wrapper) == null || f.classList.remove("av-ani-end"), (h = n.wrapper) == null || h.setAttribute("style", ""), n.animation) {
+          switch ((f = n.wrapper) == null || f.classList.remove("av-ani-end"), (h = n.wrapper) == null || h.setAttribute(
+            "style",
+            `transition-duration:${n.duration}ms;animation-duration:${n.duration}ms;`
+          ), n.animation) {
             case "av-style-12":
               w({
                 targets: n.element.querySelectorAll("path"),

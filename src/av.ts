@@ -427,7 +427,7 @@ export class AfterViewportJs {
 
             item.element.setAttribute(
               "style",
-              `transition-property: transform; transition-duration: 600ms; transition-timing-function: ease; transform: translateY(${oTranslate}px);`
+              `transition-property: transform; transition-duration: 400ms; transition-timing-function: ease; transform: translateY(${oTranslate}px);`
             );
           }
           /* if the item is going out of the viewport i manage resets */
@@ -435,7 +435,11 @@ export class AfterViewportJs {
           /* only if the group has the reset active */
           if (group.resets) {
             item.wrapper?.classList.remove("av-ani-end");
-            item.wrapper?.setAttribute("style", "");
+            /* i keep the transition duration and animation duration, so it doesn't stutter for items only when totally in */
+            item.wrapper?.setAttribute(
+              "style",
+              `transition-duration:${item.duration}ms;animation-duration:${item.duration}ms;`
+            );
             switch (item.animation) {
               case "av-style-12":
                 anime({
