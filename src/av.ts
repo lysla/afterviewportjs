@@ -21,6 +21,8 @@ export class AfterViewportJs {
     let elements = document.querySelectorAll(selector);
 
     elements.forEach((element) => {
+      /* hide the element to wait for imagesloaded */
+      element.setAttribute("hidden", "hidden");
       /* check if typewriter effect is requested */
       let gTypewriter = element.hasAttribute("data-av-typewriter")
         ? true
@@ -255,28 +257,10 @@ export class AfterViewportJs {
       });
     });
 
-    this.startBooting();
-
-    //console.log(this.groups);
-
-    window.addEventListener("load", () => {
-      imagesLoaded("body", { background: true }, () => {
-        this.init();
-        this.addListeners();
-
-        this.finishBooting();
-      });
-    });
+    this.init();
+    this.addListeners();
 
     return this;
-  }
-
-  private startBooting(): void {
-    document.querySelector("body")?.setAttribute("style", "opacity:0");
-  }
-
-  private finishBooting(): void {
-    document.querySelector("body")?.setAttribute("style", "");
   }
 
   private isInViewport(item: AfterViewportJsItem): InViewport {
@@ -313,19 +297,26 @@ export class AfterViewportJs {
   protected init(): void {
     this.groups.forEach((group) => {
       group.items.forEach((item) => {
-        this.elAddWrapper(item);
-        item.wrapper?.setAttribute(
-          "class",
-          `av-animation av-animation--${
-            item.animation
-          } av-animation-duration av-animation-delay ${
-            group.typewriter ? "av-animation-typewriter" : ""
-          } ${item.inline ? "av-animation--inline" : ""}`
-        );
-        item.wrapper?.setAttribute(
-          "style",
-          `transition-duration:${item.duration}ms;animation-duration:${item.duration}ms;transition-delay:${item.delay}ms;animation-delay:${item.delay}ms;`
-        );
+        /* config the item only after element imagesloaded */
+        imagesLoaded(item.element, () => {
+          item.element.removeAttribute("hidden");
+
+          this.elAddWrapper(item);
+          item.wrapper?.setAttribute(
+            "class",
+            `av-animation av-animation--${
+              item.animation
+            } av-animation-duration av-animation-delay ${
+              group.typewriter ? "av-animation-typewriter" : ""
+            } ${item.inline ? "av-animation--inline" : ""}`
+          );
+          item.wrapper?.setAttribute(
+            "style",
+            `transition-duration:${item.duration}ms;animation-duration:${item.duration}ms;transition-delay:${item.delay}ms;animation-delay:${item.delay}ms;`
+          );
+          /* force the resize event because we are waiting for imagesloaded */
+          window.dispatchEvent(new Event("resize"));
+        });
       });
     });
   }
