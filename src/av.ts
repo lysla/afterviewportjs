@@ -21,6 +21,8 @@ export class AfterViewportJs {
     let elements = document.querySelectorAll(selector);
 
     elements.forEach((element) => {
+      /* hide the element to wait for imagesloaded */
+      element.setAttribute("hidden", "hidden");
       /* check if typewriter effect is requested */
       let gTypewriter = element.hasAttribute("data-av-typewriter")
         ? true
@@ -255,28 +257,10 @@ export class AfterViewportJs {
       });
     });
 
-    this.startBooting();
-
-    //console.log(this.groups);
-
-    window.addEventListener("load", () => {
-      imagesLoaded("body", { background: true }, () => {
-        this.init();
-        this.addListeners();
-
-        this.finishBooting();
-      });
-    });
+    this.init();
+    this.addListeners();
 
     return this;
-  }
-
-  private startBooting(): void {
-    document.querySelector("body")?.setAttribute("style", "opacity:0");
-  }
-
-  private finishBooting(): void {
-    document.querySelector("body")?.setAttribute("style", "");
   }
 
   private isInViewport(item: AfterViewportJsItem): InViewport {
@@ -313,19 +297,26 @@ export class AfterViewportJs {
   protected init(): void {
     this.groups.forEach((group) => {
       group.items.forEach((item) => {
-        this.elAddWrapper(item);
-        item.wrapper?.setAttribute(
-          "class",
-          `av-animation av-animation--${
-            item.animation
-          } av-animation-duration av-animation-delay ${
-            group.typewriter ? "av-animation-typewriter" : ""
-          } ${item.inline ? "av-animation--inline" : ""}`
-        );
-        item.wrapper?.setAttribute(
-          "style",
-          `transition-duration:${item.duration}ms;animation-duration:${item.duration}ms;transition-delay:${item.delay}ms;animation-delay:${item.delay}ms;`
-        );
+        /* config the item only after element imagesloaded */
+        imagesLoaded(item.element, () => {
+          item.element.removeAttribute("hidden");
+
+          this.elAddWrapper(item);
+          item.wrapper?.setAttribute(
+            "class",
+            `av-animation av-animation--${
+              item.animation
+            } av-animation-duration av-animation-delay ${
+              group.typewriter ? "av-animation-typewriter" : ""
+            } ${item.inline ? "av-animation--inline" : ""}`
+          );
+          item.wrapper?.setAttribute(
+            "style",
+            `transition-duration:${item.duration}ms;animation-duration:${item.duration}ms;transition-delay:${item.delay}ms;animation-delay:${item.delay}ms;`
+          );
+          /* force the resize event because we are waiting for imagesloaded */
+          window.dispatchEvent(new Event("resize"));
+        });
       });
     });
   }
@@ -436,7 +427,7 @@ export class AfterViewportJs {
 
             item.element.setAttribute(
               "style",
-              `transition-property: transform; transition-duration: 600ms; transition-timing-function: ease; transform: translateY(${oTranslate}px);`
+              `transition-property: transform; transition-duration: 400ms; transition-timing-function: ease; transform: translateY(${oTranslate}px);`
             );
           }
           /* if the item is going out of the viewport i manage resets */
@@ -444,7 +435,11 @@ export class AfterViewportJs {
           /* only if the group has the reset active */
           if (group.resets) {
             item.wrapper?.classList.remove("av-ani-end");
-            item.wrapper?.setAttribute("style", "");
+            /* i keep the transition duration and animation duration, so it doesn't stutter for items only when totally in */
+            item.wrapper?.setAttribute(
+              "style",
+              `transition-duration:${item.duration}ms;animation-duration:${item.duration}ms;`
+            );
             switch (item.animation) {
               case "av-style-12":
                 anime({
